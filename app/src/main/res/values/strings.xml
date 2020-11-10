@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">card_game_android</string>
+    <string name="start_score">0</string>
+    <string name="game_name">War Game</string>
+    <string name="background">background</string>
+    <string name="player">player</string>
+    <string name="score">score</string>
+    <string name="fight">FIGHT!</string>
 </resources>
