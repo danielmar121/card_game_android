@@ -28,6 +28,7 @@
             >
 
             <TextView
+                android:id="@+id/main_LBL_score_player_A"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_score"
@@ -69,6 +70,7 @@
                 android:layout_weight="2">
 
                 <ImageView
+                    android:id="@+id/main_IMG_player_A_card"
                     android:layout_width="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_height="match_parent"
@@ -78,16 +80,18 @@
 
 
                 <ImageView
+                    android:id="@+id/main_IMG_player_B_card"
                     android:layout_width="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/player_girl"
                     android:layout_weight="1"
                     android:contentDescription="@string/card"/>
+
             </LinearLayout>
 
             <Button
-                android:id="@+id/play"
+                android:id="@+id/main_BTN_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fight"
@@ -107,6 +111,7 @@
             >
 
             <TextView
+                android:id="@+id/main_LBL_score_player_B"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_score"

@@ -6,7 +6,7 @@ import java.util.Collections;
 public class Deck {
     private ArrayList<Card> cards;
 
-    public Deck(ArrayList<Card> cards) {
+    public Deck() {
         this.cards = new ArrayList<>();
     }
 
@@ -33,4 +33,7 @@ public class Deck {
         return cards.size() <= 1;
     }
 
+    public void addCard(String imageName, int strength) {
+        cards.add(new Card(imageName, strength));
+    }
 }
