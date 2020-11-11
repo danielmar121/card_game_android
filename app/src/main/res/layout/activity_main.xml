@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="4dp"
         android:orientation="horizontal"
         android:baselineAligned="false">
@@ -31,8 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_score"
-                android:textSize="80sp"
-                android:textColor="#ede615"
+                android:textSize="50sp"
+                android:textColor="@color/yellow"
                 android:layout_gravity="center"/>
 
             <ImageView
@@ -45,8 +45,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:orientation="vertical"
             android:layout_weight="1">
@@ -57,33 +57,33 @@
                 android:layout_height="wrap_content"
                 android:text="@string/game_name"
                 android:textSize="50sp"
-                android:textColor="#6b9662"
-                android:layout_gravity="center"/>
+                android:textColor="@color/dark_green_700"
+                android:layout_gravity="center"
+                android:layout_weight="0"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_weight="2">
 
                 <ImageView
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_margin="10dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:src="@drawable/player_girl"
                     android:layout_weight="1"
-                    android:contentDescription="@string/score"/>
+                    android:contentDescription="@string/card"/>
 
 
                 <ImageView
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_margin="10dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:src="@drawable/player_girl"
                     android:layout_weight="1"
-                    android:contentDescription="@string/score"/>
-
-
+                    android:contentDescription="@string/card"/>
             </LinearLayout>
 
             <Button
@@ -91,10 +91,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fight"
-                android:padding="30dp"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:backgroundTint="#6b9662"
-                android:layout_gravity="center"/>
+                android:backgroundTint="@color/dark_green_700"
+                android:layout_gravity="center"
+                android:layout_weight="0"/>
 
         </LinearLayout>
 
@@ -109,8 +110,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_score"
-                android:textSize="80sp"
-                android:textColor="#ede615"
+                android:textSize="50sp"
+                android:textColor="@color/yellow"
                 android:layout_gravity="center"/>
 
             <ImageView
