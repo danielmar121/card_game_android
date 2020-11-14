@@ -7,4 +7,8 @@
     <string name="score">score</string>
     <string name="card">card</string>
     <string name="fight">FIGHT!</string>
+    <string name="game_over">THE WINNER IS:</string>
+    <string name="winner_score"></string>
+    <string name="winner_name">Gal Madar</string>
+    <string name="winner_medal">medal</string>
 </resources>
