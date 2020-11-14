@@ -1,10 +1,12 @@
 package com.daniel.card_game_android;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final int NUMBER_OF_CARDS = 26;
     Deck warDeck;
     TextView main_LBL_score_player_A, main_LBL_score_player_B;
     ImageView main_IMG_player_A_card, main_IMG_player_B_card;
@@ -51,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initDeck() {
         warDeck = new Deck();
-        // TODO: NEED TO DECIDE HOW TO ADD CARDS!
-        warDeck.addCard("image_name", 8);
+        for (int i = 1; i <= NUMBER_OF_CARDS; i++) {
+            warDeck.addCard("card_" + i, i);
+        }
         warDeck.shuffleCards();
     }
 
