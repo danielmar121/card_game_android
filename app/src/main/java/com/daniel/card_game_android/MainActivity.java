@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
     private final int NUMBER_OF_CARDS = 26;
     Deck warDeck;
     TextView main_LBL_score_player_A, main_LBL_score_player_B;
@@ -69,8 +69,11 @@ public class MainActivity extends AppCompatActivity {
         setScore(playerCardA,playerCardB);
 
         if(warDeck.isEmpty()){
-            // TODO: NEED TO GO TO WINNER SCREEN
-            // NEED TO SEND THE SCORE DETAILS TO THE NEW SCREEN
+            Intent intent = new Intent(this, WinnerPage.class);
+            intent.putExtra(WinnerPage.playerScoreA, "" + playerScoreA);
+            intent.putExtra(WinnerPage.playerScoreB, "" + playerScoreB);
+            startActivity(intent);
+            finish();
         }
     }
 
