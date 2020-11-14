@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         findViews();
         initViews();
 
-
     }
 
     private void findViews() {
@@ -41,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
         main_IMG_player_A_card = findViewById(R.id.main_IMG_player_A_card);
         main_IMG_player_B_card = findViewById(R.id.main_IMG_player_B_card);
         main_BTN_play = findViewById(R.id.main_BTN_play);
-        initDeck();
     }
 
     private void initViews() {
+        initDeck();
         main_BTN_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         int playerDrawableB = this.getResources().getIdentifier(imageNameB, "drawable", this.getPackageName());
 
         main_IMG_player_A_card.setImageDrawable(getDrawable(playerDrawableA));
-        main_IMG_player_A_card.setImageDrawable(getDrawable(playerDrawableB));
+        main_IMG_player_B_card.setImageDrawable(getDrawable(playerDrawableB));
     }
 
     @Override

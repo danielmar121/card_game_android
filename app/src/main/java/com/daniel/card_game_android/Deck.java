@@ -23,14 +23,14 @@ public class Deck {
     }
 
     public Card getCard(){
-        if (isEmpty()){
+        if (!isEmpty()){
             return cards.remove(0);
         }
         return null;
     }
 
     public boolean isEmpty(){
-        return cards.size() <= 1;
+        return cards.isEmpty();
     }
 
     public void addCard(String imageName, int strength) {
