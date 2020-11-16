@@ -3,10 +3,11 @@
 # NEED TO BE ADDED:
 
 1. LOGIN page
-2. ICON to start the game by timer
-3. Add sounds to the apllication
-4. ICON for the application
-5. RECORD TABLE - ten best records.
-6. Map with the point where the recored taken.
-7. Game progress bar.
-8. Bonus
+2. ~~ICON to start the game by timer~~
+3. functionality to start the game by time
+4. Add sounds to the application
+5. ~~ICON for the application~~
+6. RECORD TABLE - ten best records.
+7. Map with the point where the record taken.
+8. Game progress bar.
+9. Bonus
