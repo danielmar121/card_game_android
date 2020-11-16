@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Deck warDeck;
     TextView main_LBL_score_player_A, main_LBL_score_player_B;
     ImageView main_IMG_player_A_card, main_IMG_player_B_card;
-    Button main_BTN_play ;
+    ImageView main_BTN_play ;
     private int playerScoreA = 0,  playerScoreB = 0;
 
 
