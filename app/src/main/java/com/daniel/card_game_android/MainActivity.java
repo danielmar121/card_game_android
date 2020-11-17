@@ -10,13 +10,19 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
+    static final int SECOND = 1000;
     private final int NUMBER_OF_CARDS = 26;
     Deck warDeck;
     TextView main_LBL_score_player_A, main_LBL_score_player_B;
     ImageView main_IMG_player_A_card, main_IMG_player_B_card;
     ImageButton main_BTN_play ;
     private int playerScoreA = 0,  playerScoreB = 0;
+    private Timer carousalTimer;
+
 
 
     @Override
@@ -42,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         main_BTN_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playTurn();
+                main_BTN_play.setEnabled(false);
+                startCounting();
             }
         });
     }
@@ -90,9 +97,30 @@ public class MainActivity extends AppCompatActivity {
         main_IMG_player_B_card.setImageDrawable(getDrawable(playerDrawableB));
     }
 
+    private void startCounting() {
+        carousalTimer = new Timer();
+        carousalTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        playTurn();
+                    }
+                });
+            }
+        }, 0, 1*SECOND);
+    }
+    private void stopCounting() {
+        carousalTimer.cancel();
+    }
+
     @Override
     protected void onStart() {
         Log.d("pttt","onStart");
+        if (carousalTimer != null){
+            startCounting();
+        }
         super.onStart();
     }
 
@@ -111,6 +139,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         Log.d("pttt","onStop");
+        if (carousalTimer != null){
+            stopCounting();
+        }
         super.onStop();
     }
 

@@ -4,7 +4,7 @@
 
 1. LOGIN page
 2. ~~ICON to start the game by timer~~
-3. functionality to start the game by time
+3. ~~functionality to start the game by time~~
 4. Add sounds to the application
 5. ~~ICON for the application~~
 6. RECORD TABLE - ten best records.
