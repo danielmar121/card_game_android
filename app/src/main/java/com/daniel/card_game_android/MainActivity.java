@@ -1,14 +1,19 @@
 package com.daniel.card_game_android;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -24,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private int playerScoreA = 0,  playerScoreB = 0;
     private Timer carousalTimer;
     private Sound tickingSound;
-
+    private ProgressBar main_PGR_game_progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         main_IMG_player_B_card = findViewById(R.id.main_IMG_player_B_card);
         main_BTN_play = findViewById(R.id.main_BTN_play);
         tickingSound = new Sound(this, R.raw.ticking_clock_sound);
+        main_PGR_game_progress = findViewById(R.id.main_PGR_game_progress);
     }
 
     private void initViews() {
@@ -71,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
         setScore(playerCardA,playerCardB);
 
+        setProgress();
+
         if(warDeck.isEmpty()){
             Intent intent = new Intent(this, WinnerPage.class);
             intent.putExtra(WinnerPage.playerScoreA, "" + playerScoreA);
@@ -78,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    private void setProgress() {
+        double sizeOfBar = 100/(NUMBER_OF_CARDS/2.0);
+        double totalTurns = playerScoreA + playerScoreB;
+        int gameProgress = (int)(totalTurns * sizeOfBar);
+        main_PGR_game_progress.setProgress(gameProgress);
     }
 
     private void setScore(Card playerCardA, Card playerCardB) {

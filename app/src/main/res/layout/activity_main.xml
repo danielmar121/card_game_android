@@ -62,6 +62,16 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"/>
 
+            <ProgressBar
+                android:id="@+id/main_PGR_game_progress"
+                android:progressDrawable="@drawable/progress_bar_states"
+                android:layout_width="fill_parent"
+                android:layout_height="8dip"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:indeterminateOnly="false"
+                android:max="100">
+            </ProgressBar>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
