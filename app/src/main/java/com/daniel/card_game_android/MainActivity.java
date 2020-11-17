@@ -3,6 +3,7 @@ package com.daniel.card_game_android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton main_BTN_play ;
     private int playerScoreA = 0,  playerScoreB = 0;
     private Timer carousalTimer;
-
+    private Sound tickingSound;
 
 
     @Override
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         findViews();
         initViews();
-
     }
 
     private void findViews() {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         main_IMG_player_A_card = findViewById(R.id.main_IMG_player_A_card);
         main_IMG_player_B_card = findViewById(R.id.main_IMG_player_B_card);
         main_BTN_play = findViewById(R.id.main_BTN_play);
+        tickingSound = new Sound(this, R.raw.ticking_clock_sound);
     }
 
     private void initViews() {
@@ -106,11 +107,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         playTurn();
+                        tickingSound.playSound();
                     }
                 });
             }
         }, 0, 1*SECOND);
     }
+
     private void stopCounting() {
         carousalTimer.cancel();
     }
@@ -120,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("pttt","onStart");
         if (carousalTimer != null){
             startCounting();
+            tickingSound.setSound(this, R.raw.ticking_clock_sound);
+            tickingSound.playSound();
         }
         super.onStart();
     }
@@ -141,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("pttt","onStop");
         if (carousalTimer != null){
             stopCounting();
+            tickingSound.stopSound();
         }
         super.onStop();
     }

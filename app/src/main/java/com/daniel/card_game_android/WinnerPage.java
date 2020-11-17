@@ -19,8 +19,9 @@ import android.widget.Toast;
 public class WinnerPage extends AppCompatActivity {
     public static final String playerScoreA = "PLAYER_A_SCORE";
     public static final String playerScoreB = "PLAYER_B_SCORE";
-    TextView winner_LBL_game_over, winner_LBL_name;
-    ImageView main_IMG_winner;
+    private TextView winner_LBL_name;
+    private ImageView main_IMG_winner;
+    private Sound winSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,13 @@ public class WinnerPage extends AppCompatActivity {
         findViews();
 
         displayWinner();
+        winSound.playSound();
+    }
+
+    private void findViews() {
+        winner_LBL_name = findViewById(R.id.winner_LBL_name);
+        main_IMG_winner = findViewById(R.id.main_IMG_winner);
+        winSound = new Sound(this,R.raw.win_sound);
     }
 
     @Override
@@ -72,13 +80,6 @@ public class WinnerPage extends AppCompatActivity {
             main_IMG_winner.setImageDrawable(getDrawable(imageId));
             winner_LBL_name.setText("Player_B");
         }
-    }
-
-
-    private void findViews() {
-        winner_LBL_game_over = findViewById(R.id.winner_LBL_game_over);
-        winner_LBL_name = findViewById(R.id.winner_LBL_name);
-        main_IMG_winner = findViewById(R.id.main_IMG_winner);
     }
 
 
