@@ -1,17 +1,12 @@
 package com.daniel.card_game_android;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.media.Image;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Deck warDeck;
     TextView main_LBL_score_player_A, main_LBL_score_player_B;
     ImageView main_IMG_player_A_card, main_IMG_player_B_card;
-    ImageView main_BTN_play ;
+    ImageButton main_BTN_play ;
     private int playerScoreA = 0,  playerScoreB = 0;
 
 

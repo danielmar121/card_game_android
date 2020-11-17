@@ -90,15 +90,15 @@
 
             </LinearLayout>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/main_BTN_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:src="@drawable/play_button_timer"
+                android:scaleType="fitCenter"
                 android:background="@drawable/play_button_background"
                 />
 
