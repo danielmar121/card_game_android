@@ -1,13 +1,8 @@
 package com.daniel.card_game_android;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.media.Image;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         findViews();
         initViews();
-
     }
 
     private void findViews() {
@@ -69,12 +63,16 @@ public class MainActivity extends AppCompatActivity {
         setScore(playerCardA,playerCardB);
 
         if(warDeck.isEmpty()){
-            Intent intent = new Intent(this, WinnerPage.class);
-            intent.putExtra(WinnerPage.playerScoreA, "" + playerScoreA);
-            intent.putExtra(WinnerPage.playerScoreB, "" + playerScoreB);
-            startActivity(intent);
-            finish();
+            displayWinner();
         }
+    }
+
+    private void setNewCardsImage(String imageNameA, String imageNameB) {
+        int playerDrawableA = this.getResources().getIdentifier(imageNameA, "drawable", this.getPackageName());
+        int playerDrawableB = this.getResources().getIdentifier(imageNameB, "drawable", this.getPackageName());
+
+        main_IMG_player_A_card.setImageDrawable(getDrawable(playerDrawableA));
+        main_IMG_player_B_card.setImageDrawable(getDrawable(playerDrawableB));
     }
 
     private void setScore(Card playerCardA, Card playerCardB) {
@@ -87,41 +85,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setNewCardsImage(String imageNameA, String imageNameB) {
-        int playerDrawableA = this.getResources().getIdentifier(imageNameA, "drawable", this.getPackageName());
-        int playerDrawableB = this.getResources().getIdentifier(imageNameB, "drawable", this.getPackageName());
-
-        main_IMG_player_A_card.setImageDrawable(getDrawable(playerDrawableA));
-        main_IMG_player_B_card.setImageDrawable(getDrawable(playerDrawableB));
-    }
-
-    @Override
-    protected void onStart() {
-        Log.d("pttt","onStart");
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        Log.d("pttt","onResume");
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d("pttt","onPause");
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.d("pttt","onStop");
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d("pttt","onDestroy");
-        super.onDestroy();
+    private void displayWinner() {
+        Intent intent = new Intent(this, WinnerPage.class);
+        intent.putExtra(WinnerPage.playerScoreA, "" + playerScoreA);
+        intent.putExtra(WinnerPage.playerScoreB, "" + playerScoreB);
+        startActivity(intent);
+        finish();
     }
 }
