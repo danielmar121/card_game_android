@@ -4,17 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.icu.util.MeasureUnit;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class WinnerPage extends AppCompatActivity {
     public static final String playerScoreA = "PLAYER_A_SCORE";
@@ -52,14 +48,14 @@ public class WinnerPage extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.winner_ITEM_replay:
-                startNewGmae();
+                startNewGame();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void startNewGmae() {
+    private void startNewGame() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -70,46 +66,17 @@ public class WinnerPage extends AppCompatActivity {
         Intent intent = getIntent();
         String scoreA = intent.getStringExtra(playerScoreA);
         String scoreB = intent.getStringExtra(playerScoreB);
+        String playerName;
 
         if(Integer.parseInt(scoreA) > Integer.parseInt(scoreB)){
             imageId = this.getResources().getIdentifier("player_boy", "drawable", this.getPackageName());
-            main_IMG_winner.setImageDrawable(getDrawable(imageId));
-            winner_LBL_name.setText("Player_A");
+            playerName = "Player_A";
         }else{
             imageId = this.getResources().getIdentifier("player_girl", "drawable", this.getPackageName());
-            main_IMG_winner.setImageDrawable(getDrawable(imageId));
-            winner_LBL_name.setText("Player_B");
+            playerName = "Player_B";
         }
-    }
 
-
-    @Override
-    protected void onStart() {
-        Log.d("winner","onStart");
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        Log.d("winner","onResume");
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d("winner","onPause");
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.d("winner","onStop");
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d("winner","onDestroy");
-        super.onDestroy();
+        main_IMG_winner.setImageDrawable(getDrawable(imageId));
+        winner_LBL_name.setText(playerName);
     }
 }

@@ -80,19 +80,16 @@ public class MainActivity extends AppCompatActivity {
         setProgress();
 
         if(warDeck.isEmpty()){
-            Intent intent = new Intent(this, WinnerPage.class);
-            intent.putExtra(WinnerPage.playerScoreA, "" + playerScoreA);
-            intent.putExtra(WinnerPage.playerScoreB, "" + playerScoreB);
-            startActivity(intent);
-            finish();
+            displayWinner();
         }
     }
 
-    private void setProgress() {
-        double sizeOfBar = 100/(NUMBER_OF_CARDS/2.0);
-        double totalTurns = playerScoreA + playerScoreB;
-        int gameProgress = (int)(totalTurns * sizeOfBar);
-        main_PGR_game_progress.setProgress(gameProgress);
+    private void setNewCardsImage(String imageNameA, String imageNameB) {
+        int playerDrawableA = this.getResources().getIdentifier(imageNameA, "drawable", this.getPackageName());
+        int playerDrawableB = this.getResources().getIdentifier(imageNameB, "drawable", this.getPackageName());
+
+        main_IMG_player_A_card.setImageDrawable(getDrawable(playerDrawableA));
+        main_IMG_player_B_card.setImageDrawable(getDrawable(playerDrawableB));
     }
 
     private void setScore(Card playerCardA, Card playerCardB) {
@@ -105,12 +102,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setNewCardsImage(String imageNameA, String imageNameB) {
-        int playerDrawableA = this.getResources().getIdentifier(imageNameA, "drawable", this.getPackageName());
-        int playerDrawableB = this.getResources().getIdentifier(imageNameB, "drawable", this.getPackageName());
+    private void setProgress() {
+        double sizeOfBar = 100/(NUMBER_OF_CARDS/2.0);
+        double totalTurns = playerScoreA + playerScoreB;
+        int gameProgress = (int)(totalTurns * sizeOfBar);
+        main_PGR_game_progress.setProgress(gameProgress);
+    }
 
-        main_IMG_player_A_card.setImageDrawable(getDrawable(playerDrawableA));
-        main_IMG_player_B_card.setImageDrawable(getDrawable(playerDrawableB));
+    private void displayWinner() {
+        Intent intent = new Intent(this, WinnerPage.class);
+        intent.putExtra(WinnerPage.playerScoreA, "" + playerScoreA);
+        intent.putExtra(WinnerPage.playerScoreB, "" + playerScoreB);
+        startActivity(intent);
+        finish();
     }
 
     private void startCounting() {
@@ -168,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        Log.d("pttt","onDestroy");
+        Log.d("pttt", "onDestroy");
         super.onDestroy();
     }
 }

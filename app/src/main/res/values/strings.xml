@@ -4,11 +4,9 @@
     <string name="game_name">War Game</string>
     <string name="background">background</string>
     <string name="player">player</string>
-    <string name="score">score</string>
     <string name="card">card</string>
     <string name="fight">FIGHT!</string>
     <string name="game_over">THE WINNER IS:</string>
-    <string name="winner_score"></string>
     <string name="winner_name">Gal Madar</string>
     <string name="winner_medal">medal</string>
     <string name="replay_icon">replay icon</string>
