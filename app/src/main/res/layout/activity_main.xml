@@ -37,6 +37,7 @@
                 android:layout_gravity="center"/>
 
             <ImageView
+                android:id="@+id/main_IMG_player_A"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -130,6 +131,7 @@
                 android:layout_gravity="center"/>
 
             <ImageView
+                android:id="@+id/main_IMG_player_B"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

@@ -23,7 +23,6 @@ public class WinnerPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner_page);
-        Log.d("winner","onStart");
 
         findViews();
 
@@ -70,7 +69,7 @@ public class WinnerPage extends AppCompatActivity {
 
         if(Integer.parseInt(scoreA) > Integer.parseInt(scoreB)){
             imageId = this.getResources().getIdentifier("player_boy", "drawable", this.getPackageName());
-            playerName = "Player_A";
+            playerName = intent.getStringExtra(MainActivity.name);
         }else{
             imageId = this.getResources().getIdentifier("player_girl", "drawable", this.getPackageName());
             playerName = "Player_B";
