@@ -4,6 +4,8 @@ public class Card {
     private String imageName;
     private int strength;
 
+    public Card() {}
+
     public Card(String imageName, int strength) {
         this.imageName = imageName;
         this.strength = strength;

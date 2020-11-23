@@ -22,7 +22,6 @@ public class WinnerPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner_page);
-        Log.d("winner","onStart");
 
         findViews();
 

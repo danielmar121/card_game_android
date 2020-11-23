@@ -1,22 +1,21 @@
 package com.daniel.card_game_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private final int NUMBER_OF_CARDS = 26;
     Deck warDeck;
     TextView main_LBL_score_player_A, main_LBL_score_player_B;
     ImageView main_IMG_player_A_card, main_IMG_player_B_card;
-    Button main_BTN_play ;
-    private int playerScoreA = 0,  playerScoreB = 0;
+    Button main_BTN_play;
+    private int playerScoreA = 0, playerScoreB = 0;
 
 
     @Override
@@ -58,11 +57,11 @@ public class MainActivity extends AppCompatActivity {
         Card playerCardA = warDeck.getCard();
         Card playerCardB = warDeck.getCard();
 
-        setNewCardsImage(playerCardA.getImageName(),playerCardB.getImageName());
+        setNewCardsImage(playerCardA.getImageName(), playerCardB.getImageName());
 
-        setScore(playerCardA,playerCardB);
+        setScore(playerCardA, playerCardB);
 
-        if(warDeck.isEmpty()){
+        if (warDeck.isEmpty()) {
             displayWinner();
         }
     }
@@ -76,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setScore(Card playerCardA, Card playerCardB) {
-        if(playerCardA.isStronger(playerCardB)){
+        if (playerCardA.isStronger(playerCardB)) {
             playerScoreA++;
             main_LBL_score_player_A.setText(playerScoreA + "");
-        }else{
+        } else {
             playerScoreB++;
             main_LBL_score_player_B.setText(playerScoreB + "");
         }
