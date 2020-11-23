@@ -94,7 +94,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/card"
-                    android:src="@drawable/player_girl" />
+                    android:src="@drawable/player_computer" />
 
             </LinearLayout>
 
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/player"
-                android:src="@drawable/player_girl" />
+                android:src="@drawable/player_computer" />
 
         </LinearLayout>
 

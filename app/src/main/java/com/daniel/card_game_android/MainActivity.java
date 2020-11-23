@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView main_IMG_player_A_card, main_IMG_player_B_card;
     ImageView main_IMG_player_A, main_IMG_player_B;
     ImageButton main_BTN_play;
+    String playerGander;
     private int playerScoreA = 0, playerScoreB = 0;
     private String playerName;
     private Timer carousalTimer;
@@ -74,17 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setPlayerGanderAndName() {
         Intent intent = getIntent();
-        String playerGander = intent.getStringExtra(gander);
+        playerGander = intent.getStringExtra(gander);
         playerName = intent.getStringExtra(name);
 
 
         if (playerGander.matches("girl")) {
             int playerGirl = this.getResources().getIdentifier("player_girl", "drawable", this.getPackageName());
-            int playerBoy = this.getResources().getIdentifier("player_boy", "drawable", this.getPackageName());
             main_IMG_player_A.setImageDrawable(getDrawable(playerGirl));
             main_IMG_player_A_card.setImageDrawable(getDrawable(playerGirl));
-            main_IMG_player_B.setImageDrawable(getDrawable(playerBoy));
-            main_IMG_player_B_card.setImageDrawable(getDrawable(playerBoy));
         }
     }
 
@@ -130,8 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayWinner() {
         Intent intent = new Intent(this, WinnerPage.class);
-        intent.putExtra(WinnerPage.playerScoreA, "" + playerScoreA);
-        intent.putExtra(WinnerPage.playerScoreB, "" + playerScoreB);
+        intent.putExtra(WinnerPage.playerScoreA, playerScoreA);
+        intent.putExtra(WinnerPage.playerScoreB, playerScoreB);
+        intent.putExtra(MainActivity.gander, playerGander);
         intent.putExtra(name, playerName);
         startActivity(intent);
         finish();
@@ -150,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-        }, 0, 1 * SECOND);
+        }, 0, 500);
     }
 
     private void stopCounting() {

@@ -1,14 +1,13 @@
 package com.daniel.card_game_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomePage extends AppCompatActivity {
     EditText login_INPT_name;

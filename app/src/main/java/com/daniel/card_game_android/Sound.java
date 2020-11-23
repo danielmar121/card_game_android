@@ -7,7 +7,7 @@ public class Sound {
     private MediaPlayer mp;
 
     public Sound(Context context, int soundId) {
-        setSound(context,soundId);
+        setSound(context, soundId);
     }
 
     public void setSound(Context context, int soundId) {
@@ -17,7 +17,7 @@ public class Sound {
             public void onCompletion(MediaPlayer mp) {
                 mp.reset();
                 mp.release();
-                mp=null;
+                mp = null;
             }
         });
     }

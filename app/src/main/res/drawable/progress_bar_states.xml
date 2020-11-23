@@ -7,8 +7,7 @@
                 android:centerColor="@color/cardview_shadow_start_color"
                 android:centerY="0.75"
                 android:endColor="@color/cardview_shadow_start_color"
-                android:angle="270"
-                />
+                android:angle="270" />
         </shape>
     </item>
 
@@ -19,8 +18,7 @@
                     android:startColor="@color/yellow"
                     android:centerColor="@color/cardview_shadow_start_color"
                     android:centerY="0.95"
-                    android:angle="270"
-                    />
+                    android:angle="270" />
             </shape>
         </clip>
     </item>
