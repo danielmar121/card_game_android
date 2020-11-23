@@ -18,18 +18,18 @@ public class Deck {
         this.cards = cards;
     }
 
-    public void shuffleCards(){
+    public void shuffleCards() {
         Collections.shuffle(cards);
     }
 
-    public Card getCard(){
-        if (!isEmpty()){
+    public Card getCard() {
+        if (!isEmpty()) {
             return cards.remove(0);
         }
         return null;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return cards.isEmpty();
     }
 

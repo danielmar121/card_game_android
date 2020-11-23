@@ -9,76 +9,67 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/iron_background"
+        android:contentDescription="@string/background"
         android:scaleType="fitXY"
-        android:contentDescription="@string/background"/>
+        android:src="@drawable/iron_background" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/winner_LBL_game_over"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:text="@string/game_over"
+            android:textColor="@color/dark_green_700"
+            android:textSize="50sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="2"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/winner_LBL_game_over"
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/winner_medal"
+                android:src="@drawable/win" />
+
+            <ImageView
+                android:id="@+id/main_IMG_winner"
                 android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/card"
+                android:src="@drawable/player_girl" />
+
+            <ImageView
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="@string/game_over"
-                android:textSize="50sp"
-                android:textColor="@color/dark_green_700"
-                android:layout_gravity="center"
-                android:layout_weight="0"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:orientation="horizontal"
-                android:layout_weight="2">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/win"
-                    android:contentDescription="@string/winner_medal"/>
-
-                <ImageView
-                    android:id="@+id/main_IMG_winner"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/player_girl"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/card"/>
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/win"
-                    android:contentDescription="@string/winner_medal"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/winner_LBL_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/winner_name"
-                android:textSize="50sp"
-                android:textColor="@color/dark_green_700"
-                android:layout_gravity="center"
-                android:layout_weight="0"/>
+                android:layout_margin="10dp"
+                android:contentDescription="@string/winner_medal"
+                android:src="@drawable/win" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/winner_LBL_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:text="@string/winner_name"
+            android:textColor="@color/dark_green_700"
+            android:textSize="50sp" />
+
     </LinearLayout>
 </RelativeLayout>
