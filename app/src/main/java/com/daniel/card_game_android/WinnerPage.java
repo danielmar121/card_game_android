@@ -14,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class WinnerPage extends AppCompatActivity {
     public static final String playerScoreA = "PLAYER_A_SCORE";
     public static final String playerScoreB = "PLAYER_B_SCORE";
-    public static final String imagePlayerA = "IMAGE_PLAYER_A";
-    public static final String imagePlayerB = "IMAGE_PLAYER_B";
     private TextView winner_LBL_name;
     private ImageView main_IMG_winner;
     private Sound winSound;
