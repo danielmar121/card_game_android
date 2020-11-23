@@ -1,13 +1,6 @@
 package com.daniel.card_game_android;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +8,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     TextView main_LBL_score_player_A, main_LBL_score_player_B;
     ImageView main_IMG_player_A_card, main_IMG_player_B_card;
     ImageView main_IMG_player_A, main_IMG_player_B;
-    ImageButton main_BTN_play ;
-    private int playerScoreA = 0,  playerScoreB = 0;
+    ImageButton main_BTN_play;
+    private int playerScoreA = 0, playerScoreB = 0;
     private String playerName;
     private Timer carousalTimer;
     private Sound tickingSound;
@@ -83,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         playerName = intent.getStringExtra(name);
 
 
-        if(playerGander.matches("girl")){
+        if (playerGander.matches("girl")) {
             int playerGirl = this.getResources().getIdentifier("player_girl", "drawable", this.getPackageName());
             int playerBoy = this.getResources().getIdentifier("player_boy", "drawable", this.getPackageName());
             main_IMG_player_A.setImageDrawable(getDrawable(playerGirl));
@@ -97,13 +92,13 @@ public class MainActivity extends AppCompatActivity {
         Card playerCardA = warDeck.getCard();
         Card playerCardB = warDeck.getCard();
 
-        setNewCardsImage(playerCardA.getImageName(),playerCardB.getImageName());
+        setNewCardsImage(playerCardA.getImageName(), playerCardB.getImageName());
 
-        setScore(playerCardA,playerCardB);
+        setScore(playerCardA, playerCardB);
 
         setProgress();
 
-        if(warDeck.isEmpty()){
+        if (warDeck.isEmpty()) {
             displayWinner();
         }
     }
@@ -117,19 +112,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setScore(Card playerCardA, Card playerCardB) {
-        if(playerCardA.isStronger(playerCardB)){
+        if (playerCardA.isStronger(playerCardB)) {
             playerScoreA++;
             main_LBL_score_player_A.setText(playerScoreA + "");
-        }else{
+        } else {
             playerScoreB++;
             main_LBL_score_player_B.setText(playerScoreB + "");
         }
     }
 
     private void setProgress() {
-        double sizeOfBar = 100/(NUMBER_OF_CARDS/2.0);
+        double sizeOfBar = 100 / (NUMBER_OF_CARDS / 2.0);
         double totalTurns = playerScoreA + playerScoreB;
-        int gameProgress = (int)(totalTurns * sizeOfBar);
+        int gameProgress = (int) (totalTurns * sizeOfBar);
         main_PGR_game_progress.setProgress(gameProgress);
     }
 
@@ -155,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-        }, 0, 1*SECOND);
+        }, 0, 1 * SECOND);
     }
 
     private void stopCounting() {
@@ -164,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        Log.d("pttt","onStart");
-        if (carousalTimer != null){
+        Log.d("pttt", "onStart");
+        if (carousalTimer != null) {
             startCounting();
             tickingSound.setSound(this, R.raw.ticking_clock_sound);
             tickingSound.playSound();
@@ -175,20 +170,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Log.d("pttt","onResume");
+        Log.d("pttt", "onResume");
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        Log.d("pttt","onPause");
+        Log.d("pttt", "onPause");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        Log.d("pttt","onStop");
-        if (carousalTimer != null){
+        Log.d("pttt", "onStop");
+        if (carousalTimer != null) {
             stopCounting();
             tickingSound.stopSound();
         }
