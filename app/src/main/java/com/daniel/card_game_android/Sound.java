@@ -6,8 +6,7 @@ import android.media.MediaPlayer;
 public class Sound {
     private MediaPlayer mp;
 
-    public Sound(Context context, int soundId) {
-        setSound(context, soundId);
+    public Sound() {
     }
 
     public void setSound(Context context, int soundId) {
@@ -30,5 +29,12 @@ public class Sound {
 
     public void stopSound() {
         mp.stop();
+    }
+
+    public boolean isPlaying() {
+        if (mp != null) {
+            return mp.isPlaying();
+        }
+        return false;
     }
 }

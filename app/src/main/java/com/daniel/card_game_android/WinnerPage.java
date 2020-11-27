@@ -9,9 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class WinnerPage extends AppCompatActivity {
+public class WinnerPage extends ActivityBase {
     public static final String playerScoreA = "PLAYER_A_SCORE";
     public static final String playerScoreB = "PLAYER_B_SCORE";
     private TextView winner_LBL_name;
@@ -32,7 +31,8 @@ public class WinnerPage extends AppCompatActivity {
     private void findViews() {
         winner_LBL_name = findViewById(R.id.winner_LBL_name);
         main_IMG_winner = findViewById(R.id.main_IMG_winner);
-        winSound = new Sound(this, R.raw.win_sound);
+        winSound = new Sound();
+        winSound.setSound(this, R.raw.win_sound);
     }
 
     @Override
