@@ -4,7 +4,8 @@ public class Card {
     private String imageName;
     private int strength;
 
-    public Card() {}
+    public Card() {
+    }
 
     public Card(String imageName, int strength) {
         this.imageName = imageName;
@@ -27,7 +28,7 @@ public class Card {
         this.strength = strength;
     }
 
-    public boolean isStronger(Card card){
-       return this.strength > card.strength;
+    public boolean isStronger(Card card) {
+        return this.strength > card.strength;
     }
 }

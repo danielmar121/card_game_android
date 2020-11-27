@@ -24,7 +24,8 @@
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="0"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/main_LBL_score_player_A"
@@ -36,6 +37,7 @@
                 android:textSize="50sp" />
 
             <ImageView
+                android:id="@+id/main_IMG_player_A"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -93,7 +95,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/card"
-                    android:src="@drawable/player_girl" />
+                    android:src="@drawable/player_computer" />
 
             </LinearLayout>
 
@@ -114,7 +116,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/main_LBL_score_player_B"
@@ -126,11 +129,12 @@
                 android:textSize="50sp" />
 
             <ImageView
+                android:id="@+id/main_IMG_player_B"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/player"
-                android:src="@drawable/player_girl" />
+                android:src="@drawable/player_computer" />
 
         </LinearLayout>
 
