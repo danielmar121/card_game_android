@@ -1,6 +1,7 @@
 package com.daniel.card_game_android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.google.gson.Gson;
 
 public class WinnerPage extends ActivityBase {
     public static final String playerScoreA = "PLAYER_A_SCORE";
@@ -72,15 +75,50 @@ public class WinnerPage extends ActivityBase {
                 playerImage = "player_girl";
             else
                 playerImage = "player_boy";
-
             playerName = intent.getStringExtra(MainActivity.name);
+            saveScore(scoreA, playerName);
         } else {
             playerImage = "player_computer";
             playerName = "Computer";
+            saveScore(scoreB, playerName);
         }
 
         imageId = this.getResources().getIdentifier(playerImage, "drawable", this.getPackageName());
         main_IMG_winner.setImageDrawable(getDrawable(imageId));
         winner_LBL_name.setText(playerName);
+    }
+
+    private void saveScore(int score, String playerName) {
+        TopTenRecords topTenRecords;
+
+        SharedPreferences prefs = getSharedPreferences("MY_SP", MODE_PRIVATE);
+        Gson gson = new Gson();
+
+        String jsonFromMemory = prefs.getString("TopTen", "");
+        if (jsonFromMemory == "") {
+            topTenRecords = new TopTenRecords();
+        } else {
+            topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
+        }
+
+        Record record = new Record(playerName, score);
+        boolean isAdd = topTenRecords.addRecord(record);
+
+        if (isAdd) {
+            SharedPreferences.Editor editor = prefs.edit();
+            String json = gson.toJson(topTenRecords);
+            editor.putString("TopTen", json);
+            editor.apply();
+        }
+
+        jsonFromMemory = prefs.getString("TopTen", "");
+        topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
+    }
+
+    @Override
+    protected void onDestroy() {
+        Intent intent = new Intent(this, WelcomePage.class);
+        startActivity(intent);
+        super.onDestroy();
     }
 }

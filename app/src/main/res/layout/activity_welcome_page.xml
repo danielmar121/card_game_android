@@ -30,7 +30,7 @@
             android:scaleType="centerInside" />
 
         <EditText
-            android:id="@+id/login_INPT_name"
+            android:id="@+id/welcome_INPT_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
@@ -61,7 +61,7 @@
             android:layout_gravity="center">
 
             <ImageButton
-                android:id="@+id/login_BTN_boy"
+                android:id="@+id/welcome_BTN_boy"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/player_boy"
@@ -71,7 +71,7 @@
                 android:scaleType="centerInside" />
 
             <ImageButton
-                android:id="@+id/login_BTN_girl"
+                android:id="@+id/welcome_BTN_girl"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/player_girl"
@@ -81,6 +81,16 @@
                 android:scaleType="centerInside" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/welcome_BTN_records"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/records"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_corners_button" />
 
     </LinearLayout>
 
