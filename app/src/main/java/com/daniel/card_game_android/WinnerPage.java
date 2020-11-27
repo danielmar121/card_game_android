@@ -1,18 +1,16 @@
 package com.daniel.card_game_android;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class WinnerPage extends AppCompatActivity {
+import androidx.annotation.NonNull;
+
+public class WinnerPage extends ActivityBase {
     public static final String playerScoreA = "PLAYER_A_SCORE";
     public static final String playerScoreB = "PLAYER_B_SCORE";
     private TextView winner_LBL_name;
@@ -23,7 +21,6 @@ public class WinnerPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner_page);
-        Log.d("winner","onStart");
 
         findViews();
 
@@ -34,7 +31,8 @@ public class WinnerPage extends AppCompatActivity {
     private void findViews() {
         winner_LBL_name = findViewById(R.id.winner_LBL_name);
         main_IMG_winner = findViewById(R.id.main_IMG_winner);
-        winSound = new Sound(this,R.raw.win_sound);
+        winSound = new Sound();
+        winSound.setSound(this, R.raw.win_sound);
     }
 
     @Override
@@ -46,7 +44,7 @@ public class WinnerPage extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.winner_ITEM_replay:
                 startNewGame();
                 return true;
@@ -56,7 +54,7 @@ public class WinnerPage extends AppCompatActivity {
     }
 
     private void startNewGame() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, WelcomePage.class);
         startActivity(intent);
         finish();
     }
@@ -64,18 +62,24 @@ public class WinnerPage extends AppCompatActivity {
     private void displayWinner() {
         int imageId;
         Intent intent = getIntent();
-        String scoreA = intent.getStringExtra(playerScoreA);
-        String scoreB = intent.getStringExtra(playerScoreB);
-        String playerName;
+        int scoreA = intent.getIntExtra(WinnerPage.playerScoreA, 0);
+        int scoreB = intent.getIntExtra(WinnerPage.playerScoreB, 0);
+        String playerName, playerImage;
+        String gander = intent.getStringExtra(MainActivity.gander);
 
-        if(Integer.parseInt(scoreA) > Integer.parseInt(scoreB)){
-            imageId = this.getResources().getIdentifier("player_boy", "drawable", this.getPackageName());
-            playerName = "Player_A";
-        }else{
-            imageId = this.getResources().getIdentifier("player_girl", "drawable", this.getPackageName());
-            playerName = "Player_B";
+        if (scoreA > scoreB) {
+            if (gander.matches("girl"))
+                playerImage = "player_girl";
+            else
+                playerImage = "player_boy";
+
+            playerName = intent.getStringExtra(MainActivity.name);
+        } else {
+            playerImage = "player_computer";
+            playerName = "Computer";
         }
 
+        imageId = this.getResources().getIdentifier(playerImage, "drawable", this.getPackageName());
         main_IMG_winner.setImageDrawable(getDrawable(imageId));
         winner_LBL_name.setText(playerName);
     }
