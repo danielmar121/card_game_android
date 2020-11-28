@@ -1,24 +1,22 @@
 package com.daniel.card_game_android;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.google.gson.Gson;
-
-public class WinnerPage extends ActivityBase {
+public class WinnerPage extends AppCompatActivity {
     public static final String playerScoreA = "PLAYER_A_SCORE";
     public static final String playerScoreB = "PLAYER_B_SCORE";
-    private TextView winner_LBL_name;
-    private ImageView main_IMG_winner;
-    private Sound winSound;
+    TextView winner_LBL_game_over, winner_LBL_name;
+    ImageView main_IMG_winner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +26,12 @@ public class WinnerPage extends ActivityBase {
         findViews();
 
         displayWinner();
-        winSound.playSound();
     }
 
     private void findViews() {
+        winner_LBL_game_over = findViewById(R.id.winner_LBL_game_over);
         winner_LBL_name = findViewById(R.id.winner_LBL_name);
         main_IMG_winner = findViewById(R.id.main_IMG_winner);
-        winSound = new Sound();
-        winSound.setSound(this, R.raw.win_sound);
     }
 
     @Override
@@ -47,7 +43,7 @@ public class WinnerPage extends ActivityBase {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case R.id.winner_ITEM_replay:
                 startNewGame();
                 return true;
@@ -57,7 +53,7 @@ public class WinnerPage extends ActivityBase {
     }
 
     private void startNewGame() {
-        Intent intent = new Intent(this, WelcomePage.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
@@ -65,60 +61,19 @@ public class WinnerPage extends ActivityBase {
     private void displayWinner() {
         int imageId;
         Intent intent = getIntent();
-        int scoreA = intent.getIntExtra(WinnerPage.playerScoreA, 0);
-        int scoreB = intent.getIntExtra(WinnerPage.playerScoreB, 0);
-        String playerName, playerImage;
-        String gander = intent.getStringExtra(MainActivity.gander);
+        String scoreA = intent.getStringExtra(playerScoreA);
+        String scoreB = intent.getStringExtra(playerScoreB);
+        String playerName;
 
-        if (scoreA > scoreB) {
-            if (gander.matches("girl"))
-                playerImage = "player_girl";
-            else
-                playerImage = "player_boy";
-            playerName = intent.getStringExtra(MainActivity.name);
-            saveScore(scoreA, playerName);
-        } else {
-            playerImage = "player_computer";
-            playerName = "Computer";
-            saveScore(scoreB, playerName);
+        if(Integer.parseInt(scoreA) > Integer.parseInt(scoreB)){
+            imageId = this.getResources().getIdentifier("player_boy", "drawable", this.getPackageName());
+            playerName = "Player_A";
+        }else{
+            imageId = this.getResources().getIdentifier("player_girl", "drawable", this.getPackageName());
+            playerName = "Player_B";
         }
 
-        imageId = this.getResources().getIdentifier(playerImage, "drawable", this.getPackageName());
         main_IMG_winner.setImageDrawable(getDrawable(imageId));
         winner_LBL_name.setText(playerName);
-    }
-
-    private void saveScore(int score, String playerName) {
-        TopTenRecords topTenRecords;
-
-        SharedPreferences prefs = getSharedPreferences("MY_SP", MODE_PRIVATE);
-        Gson gson = new Gson();
-
-        String jsonFromMemory = prefs.getString("TopTen", "");
-        if (jsonFromMemory == "") {
-            topTenRecords = new TopTenRecords();
-        } else {
-            topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
-        }
-
-        Record record = new Record(playerName, score);
-        boolean isAdd = topTenRecords.addRecord(record);
-
-        if (isAdd) {
-            SharedPreferences.Editor editor = prefs.edit();
-            String json = gson.toJson(topTenRecords);
-            editor.putString("TopTen", json);
-            editor.apply();
-        }
-
-        jsonFromMemory = prefs.getString("TopTen", "");
-        topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
-    }
-
-    @Override
-    protected void onDestroy() {
-        Intent intent = new Intent(this, WelcomePage.class);
-        startActivity(intent);
-        super.onDestroy();
     }
 }
