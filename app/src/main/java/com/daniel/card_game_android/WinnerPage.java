@@ -12,10 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
+import static com.daniel.card_game_android.Constants.*;
 
 public class WinnerPage extends ActivityBase {
     public static final String playerScoreA = "PLAYER_A_SCORE";
     public static final String playerScoreB = "PLAYER_B_SCORE";
+    public static final String playerImageA = "PLAYER_A_IMAGE";
     private TextView winner_LBL_name;
     private ImageView main_IMG_winner;
     private Sound winSound;
@@ -63,22 +65,20 @@ public class WinnerPage extends ActivityBase {
     }
 
     private void displayWinner() {
+        //TO DO: refactor object player
         int imageId;
         Intent intent = getIntent();
         int scoreA = intent.getIntExtra(WinnerPage.playerScoreA, 0);
         int scoreB = intent.getIntExtra(WinnerPage.playerScoreB, 0);
-        String playerName, playerImage;
-        String gander = intent.getStringExtra(MainActivity.gander);
+        String playerImage = intent.getStringExtra(WinnerPage.playerImageA);
+        String playerName;
+        //String gander = intent.getStringExtra(MainActivity.gender);
 
         if (scoreA > scoreB) {
-            if (gander.matches("girl"))
-                playerImage = "player_girl";
-            else
-                playerImage = "player_boy";
             playerName = intent.getStringExtra(MainActivity.name);
             saveScore(scoreA, playerName);
         } else {
-            playerImage = "player_computer";
+            playerImage = COMPUTER_CARD;
             playerName = "Computer";
             saveScore(scoreB, playerName);
         }

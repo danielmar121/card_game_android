@@ -7,20 +7,19 @@ import android.util.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import static com.daniel.card_game_android.Constants.*;
 
 public class MainActivity extends ActivityBase {
-    public static final String gander = "GANDER";
+    public static final String gender = "GENDER";
     public static final String name = "NAME";
 
     private final int SECOND = 1000;
     private final int NUMBER_OF_CARDS = 26;
     Deck warDeck;
-    String playerGander;
-    private int playerScoreA = 0, playerScoreB = 0;
-    private String playerName;
     private Timer carousalTimer;
     private MainViewController mainViewController;
-
+    public Player playerA = new Player();
+    public Player playerB = new Player();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +48,18 @@ public class MainActivity extends ActivityBase {
 
     private void setPlayerGanderAndName() {
         Intent intent = getIntent();
-        playerGander = intent.getStringExtra(gander);
-        playerName = intent.getStringExtra(name);
+        playerA.setPlayerGender(intent);
+        playerA.setPlayerName(intent);
 
-
-        if (playerGander.matches("girl")) {
-            int playerGirl = this.getResources().getIdentifier("player_girl", "drawable", this.getPackageName());
+        if (playerA.getPlayerGender().matches("girl")) {
+            playerA.setPlayerImage(GIRL_CARD);
+            int playerGirl = this.getResources().getIdentifier(playerA.getPlayerImage(), "drawable", this.getPackageName());
             Drawable girlImage = getDrawable(playerGirl);
             mainViewController.setPlayerImage(girlImage);
             mainViewController.setPlayerCardImage(girlImage);
+        }
+        else {
+            playerA.setPlayerImage(BOY_CARD);
         }
     }
 
@@ -89,27 +91,28 @@ public class MainActivity extends ActivityBase {
 
     private void setScore(Card playerCardA, Card playerCardB) {
         if (playerCardA.isStronger(playerCardB)) {
-            playerScoreA++;
-            mainViewController.setPlayerScore(playerScoreA + "");
+            playerA.setPlayerScore(playerA.getPlayerScore() + 1);
+            mainViewController.setPlayerScore(playerA.getPlayerScore() + "");
         } else {
-            playerScoreB++;
-            mainViewController.setComputerScore(playerScoreB + "");
+            playerB.setPlayerScore(playerB.getPlayerScore() + 1);
+            mainViewController.setComputerScore(playerB.getPlayerScore() + "");
         }
     }
 
     private void setProgress() {
         double sizeOfBar = 100 / (NUMBER_OF_CARDS / 2.0);
-        double totalTurns = playerScoreA + playerScoreB;
+        double totalTurns = playerA.getPlayerScore() + playerB.getPlayerScore();
         int gameProgress = (int) (totalTurns * sizeOfBar);
         mainViewController.setProgressBar(gameProgress);
     }
 
     private void displayWinner() {
         Intent intent = new Intent(this, WinnerPage.class);
-        intent.putExtra(WinnerPage.playerScoreA, playerScoreA);
-        intent.putExtra(WinnerPage.playerScoreB, playerScoreB);
-        intent.putExtra(MainActivity.gander, playerGander);
-        intent.putExtra(name, playerName);
+        intent.putExtra(WinnerPage.playerImageA, playerA.getPlayerImage());
+        intent.putExtra(WinnerPage.playerScoreA, playerA.getPlayerScore());
+        intent.putExtra(WinnerPage.playerScoreB, playerB.getPlayerScore());
+        intent.putExtra(MainActivity.gender, playerA.getPlayerGender());
+        intent.putExtra(name, playerA.getPlayerName());
         startActivity(intent);
         finish();
     }

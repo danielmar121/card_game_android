@@ -67,7 +67,7 @@ public class WelcomePage extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(MainActivity.gander, playerGander);
+        intent.putExtra(MainActivity.gender, playerGander);
         intent.putExtra(MainActivity.name, name);
         startActivity(intent);
         finish();

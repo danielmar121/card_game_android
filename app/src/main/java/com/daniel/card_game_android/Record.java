@@ -6,6 +6,8 @@ public class Record implements Comparable {
     private long date;
     private int score;
     private double lon, lat;
+    Player playerA;
+    Player playerB;
 
 
     public Record() {

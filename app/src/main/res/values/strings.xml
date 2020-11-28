@@ -11,6 +11,7 @@
     <string name="winner_medal">medal</string>
     <string name="replay_icon">replay icon</string>
     <string name="records">BEST RECORDS</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
