@@ -72,9 +72,13 @@ public class WinnerPage extends ActivityBase {
         int scoreB = intent.getIntExtra(WinnerPage.playerScoreB, 0);
         String playerImage = intent.getStringExtra(WinnerPage.playerImageA);
         String playerName;
-        //String gander = intent.getStringExtra(MainActivity.gender);
+        String gander = intent.getStringExtra(MainActivity.gender);
 
         if (scoreA > scoreB) {
+            if (gander.matches("girl"))
+                playerImage = "player_girl";
+            else
+                playerImage = "player_boy";
             playerName = intent.getStringExtra(MainActivity.name);
             saveScore(scoreA, playerName);
         } else {
