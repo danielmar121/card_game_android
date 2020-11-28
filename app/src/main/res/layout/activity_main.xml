@@ -24,8 +24,7 @@
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="0"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/main_LBL_score_player_A"
@@ -37,7 +36,6 @@
                 android:textSize="50sp" />
 
             <ImageView
-                android:id="@+id/main_IMG_player_A"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -61,15 +59,6 @@
                 android:text="@string/game_name"
                 android:textColor="@color/dark_green_700"
                 android:textSize="50sp" />
-
-            <ProgressBar
-                android:id="@+id/main_PGR_game_progress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="8dip"
-                android:indeterminateOnly="false"
-                android:max="100"
-                android:progressDrawable="@drawable/progress_bar_states"></ProgressBar>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,20 +84,20 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/card"
-                    android:src="@drawable/player_computer" />
+                    android:src="@drawable/player_girl" />
 
             </LinearLayout>
 
-            <ImageButton
+            <Button
                 android:id="@+id/main_BTN_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:background="@drawable/play_button_background"
+                android:backgroundTint="@color/dark_green_700"
                 android:padding="10dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/play_button_timer" />
+                android:text="@string/fight"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -116,8 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/main_LBL_score_player_B"
@@ -129,12 +117,11 @@
                 android:textSize="50sp" />
 
             <ImageView
-                android:id="@+id/main_IMG_player_B"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/player"
-                android:src="@drawable/player_computer" />
+                android:src="@drawable/player_girl" />
 
         </LinearLayout>
 
