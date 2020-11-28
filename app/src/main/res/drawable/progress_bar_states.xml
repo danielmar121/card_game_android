@@ -1,0 +1,26 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape>
+            <gradient
+                android:startColor="@color/cardview_shadow_start_color"
+                android:centerColor="@color/cardview_shadow_start_color"
+                android:centerY="0.75"
+                android:endColor="@color/cardview_shadow_start_color"
+                android:angle="270" />
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <gradient
+                    android:startColor="@color/yellow"
+                    android:centerColor="@color/cardview_shadow_start_color"
+                    android:centerY="0.95"
+                    android:angle="270" />
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>
