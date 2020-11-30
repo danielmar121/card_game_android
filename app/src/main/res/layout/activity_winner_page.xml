@@ -44,7 +44,7 @@
                 android:src="@drawable/win" />
 
             <ImageView
-                android:id="@+id/main_IMG_winner"
+                android:id="@+id/winner_IMG_winner"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -70,6 +70,17 @@
             android:text="@string/winner_name"
             android:textColor="@color/dark_green_700"
             android:textSize="50sp" />
+
+        <Button
+            android:id="@+id/winner_BTN_new_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:text="@string/new_game"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_corners_button" />
 
     </LinearLayout>
 </RelativeLayout>

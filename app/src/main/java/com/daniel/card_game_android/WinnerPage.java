@@ -3,9 +3,12 @@ package com.daniel.card_game_android;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +21,8 @@ public class WinnerPage extends ActivityBase {
     public static final String PLAYER_A = "PLAYER_A";
     public static final String PLAYER_B = "PLAYER_B";
     private TextView winner_LBL_name;
-    private ImageView main_IMG_winner;
+    private ImageView winner_IMG_winner;
+    private Button winner_BTN_new_game;
     private Sound winSound;
 
     @Override
@@ -27,6 +31,7 @@ public class WinnerPage extends ActivityBase {
         setContentView(R.layout.activity_winner_page);
 
         findViews();
+        initViews();
 
         displayWinner();
         winSound.playSound();
@@ -34,11 +39,26 @@ public class WinnerPage extends ActivityBase {
 
     private void findViews() {
         winner_LBL_name = findViewById(R.id.winner_LBL_name);
-        main_IMG_winner = findViewById(R.id.main_IMG_winner);
+        winner_IMG_winner = findViewById(R.id.winner_IMG_winner);
+        winner_BTN_new_game = findViewById(R.id.winner_BTN_new_game);
         winSound = new Sound();
         winSound.setSound(this, R.raw.win_sound);
     }
 
+    private void initViews() {
+        winner_BTN_new_game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNewGame();
+            }
+        });
+    }
+
+    private void startNewGame() {
+        Intent intent = new Intent(this, WelcomePage.class);
+        startActivity(intent);
+        finish();
+    }
 
     private void displayWinner() {
         int imageId;
@@ -64,7 +84,7 @@ public class WinnerPage extends ActivityBase {
         }
 
         imageId = this.getResources().getIdentifier(playerImage, "drawable", this.getPackageName());
-        main_IMG_winner.setImageDrawable(getDrawable(imageId));
+        winner_IMG_winner.setImageDrawable(getDrawable(imageId));
         winner_LBL_name.setText(playerName);
     }
 
@@ -90,12 +110,5 @@ public class WinnerPage extends ActivityBase {
             editor.putString("TopTen", json);
             editor.apply();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        Intent intent = new Intent(this, WelcomePage.class);
-        startActivity(intent);
-        super.onDestroy();
     }
 }
