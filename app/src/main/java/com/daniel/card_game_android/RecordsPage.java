@@ -3,6 +3,7 @@ package com.daniel.card_game_android;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ListView;
+import static com.daniel.card_game_android.Constants.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,7 +34,7 @@ public class RecordsPage extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("MY_SP", MODE_PRIVATE);
         Gson gson = new Gson();
 
-        String jsonFromMemory = prefs.getString("TopTen", "");
+        String jsonFromMemory = prefs.getString(TOP_TEN, "");
         if (jsonFromMemory == "") {
             finish();
         } else {

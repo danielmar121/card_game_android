@@ -5,22 +5,23 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import static com.daniel.card_game_android.Constants.*;
 
 public class MainActivity extends ActivityBase {
-    public static final String gender = "GENDER";
-    public static final String name = "NAME";
+    public static final String PLAYER_GENDER = "PLAYER_GENDER";
+    public static final String PLAYER_NAME = "PLAYER_NAME";
 
     private final int SECOND = 1000;
     private final int NUMBER_OF_CARDS = 26;
     Deck warDeck;
     private Timer carousalTimer;
     private MainViewController mainViewController;
-    public Player playerA = new Player();
-    public Player playerB = new Player();
-
+    public Player playerA;
+    public Player playerB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class MainActivity extends ActivityBase {
 
     private void initViews() {
         initDeck();
-        setPlayerGanderAndName();
+        setPlayers();
     }
 
     public void initDeck() {
@@ -46,21 +47,25 @@ public class MainActivity extends ActivityBase {
         warDeck.shuffleCards();
     }
 
-    private void setPlayerGanderAndName() {
+    private void setPlayers() {
         Intent intent = getIntent();
-        playerA.setPlayerGender(intent);
-        playerA.setPlayerName(intent);
+        String playerGander = intent.getStringExtra(PLAYER_GENDER);
+        String playerName = intent.getStringExtra(PLAYER_NAME);
 
-        if (playerA.getPlayerGender().matches("girl")) {
+        playerA = new Player().setPlayerName(playerName).setPlayerScore(0);
+        playerB = new Player(COMPUTER_CARD,0,COMPUTER_NAME,-0.142368,51.501156);
+
+        if (playerGander.matches("girl")) {
             playerA.setPlayerImage(GIRL_CARD);
-            int playerGirl = this.getResources().getIdentifier(playerA.getPlayerImage(), "drawable", this.getPackageName());
-            Drawable girlImage = getDrawable(playerGirl);
-            mainViewController.setPlayerImage(girlImage);
-            mainViewController.setPlayerCardImage(girlImage);
         }
         else {
             playerA.setPlayerImage(BOY_CARD);
         }
+
+        int playerImageId = this.getResources().getIdentifier(playerA.getPlayerImage(), "drawable", this.getPackageName());
+        Drawable playerImage = getDrawable(playerImageId);
+        mainViewController.setPlayerImage(playerImage);
+        mainViewController.setPlayerCardImage(playerImage);
     }
 
     private void playTurn() {
@@ -91,10 +96,10 @@ public class MainActivity extends ActivityBase {
 
     private void setScore(Card playerCardA, Card playerCardB) {
         if (playerCardA.isStronger(playerCardB)) {
-            playerA.setPlayerScore(playerA.getPlayerScore() + 1);
+            playerA.addScore();
             mainViewController.setPlayerScore(playerA.getPlayerScore() + "");
         } else {
-            playerB.setPlayerScore(playerB.getPlayerScore() + 1);
+            playerB.addScore();
             mainViewController.setComputerScore(playerB.getPlayerScore() + "");
         }
     }
@@ -107,12 +112,14 @@ public class MainActivity extends ActivityBase {
     }
 
     private void displayWinner() {
+        Gson gson = new Gson();
         Intent intent = new Intent(this, WinnerPage.class);
-        intent.putExtra(WinnerPage.playerImageA, playerA.getPlayerImage());
-        intent.putExtra(WinnerPage.playerScoreA, playerA.getPlayerScore());
-        intent.putExtra(WinnerPage.playerScoreB, playerB.getPlayerScore());
-        intent.putExtra(MainActivity.gender, playerA.getPlayerGender());
-        intent.putExtra(name, playerA.getPlayerName());
+
+        String playerJsonA = gson.toJson(playerA);
+        String playerJsonB = gson.toJson(playerB);
+        intent.putExtra(WinnerPage.PLAYER_A, playerJsonA);
+        intent.putExtra(WinnerPage.PLAYER_B, playerJsonB);
+
         startActivity(intent);
         finish();
     }
