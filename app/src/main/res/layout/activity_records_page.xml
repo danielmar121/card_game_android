@@ -15,26 +15,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
-            android:orientation="vertical"
-            android:layout_weight="1">
+        <FrameLayout
+            android:id="@+id/record_LAY_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="24dp"
+            android:layout_weight="1"
+            android:background="#45454545" />
 
-            <ListView
-                android:id="@+id/record_LIV_records"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
+        <FrameLayout
+            android:id="@+id/record_LAY_map"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_margin="24dp"
+            android:background="#45454545" />
 
 
     </LinearLayout>
-
 
 </RelativeLayout>

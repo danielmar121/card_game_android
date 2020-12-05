@@ -2,19 +2,18 @@ package com.daniel.card_game_android;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ListView;
-import static com.daniel.card_game_android.Constants.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
+import static com.daniel.card_game_android.Constants.TOP_TEN;
+
 
 public class RecordsPage extends AppCompatActivity {
-
-    ListView recordsListView;
-    RecordItemAdapter itemAdapter;
-    TopTenRecords topTenRecords;
+    private RecordItemAdapter itemAdapter;
+    private TopTenRecords topTenRecords;
+    private FragmentList fragmentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +22,11 @@ public class RecordsPage extends AppCompatActivity {
 
         getTopTen();
 
-        recordsListView = (ListView) this.findViewById(R.id.record_LIV_records);
         itemAdapter = new RecordItemAdapter(this,
                 R.layout.record_item, topTenRecords.getRecords());
-        recordsListView.setAdapter(itemAdapter);
+
+        fragmentList = new FragmentList(itemAdapter);
+        getSupportFragmentManager().beginTransaction().add(R.id.record_LAY_list, fragmentList).commit();
     }
 
     private void getTopTen() {
@@ -35,9 +35,7 @@ public class RecordsPage extends AppCompatActivity {
         Gson gson = new Gson();
 
         String jsonFromMemory = prefs.getString(TOP_TEN, "");
-        if (jsonFromMemory == "") {
-            finish();
-        } else {
+        if (jsonFromMemory != "") {
             topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
         }
     }

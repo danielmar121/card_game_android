@@ -9,7 +9,11 @@ import com.google.gson.Gson;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import static com.daniel.card_game_android.Constants.*;
+
+import static com.daniel.card_game_android.Constants.BOY_CARD;
+import static com.daniel.card_game_android.Constants.COMPUTER_CARD;
+import static com.daniel.card_game_android.Constants.COMPUTER_NAME;
+import static com.daniel.card_game_android.Constants.GIRL_CARD;
 
 public class MainActivity extends ActivityBase {
     public static final String PLAYER_GENDER = "PLAYER_GENDER";
@@ -22,6 +26,7 @@ public class MainActivity extends ActivityBase {
     private MainViewController mainViewController;
     public Player playerA;
     public Player playerB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +58,11 @@ public class MainActivity extends ActivityBase {
         String playerName = intent.getStringExtra(PLAYER_NAME);
 
         playerA = new Player().setPlayerName(playerName).setPlayerScore(0);
-        playerB = new Player(COMPUTER_CARD,0,COMPUTER_NAME,-0.142368,51.501156);
+        playerB = new Player(COMPUTER_CARD, 0, COMPUTER_NAME, -0.142368, 51.501156);
 
         if (playerGander.matches("girl")) {
             playerA.setPlayerImage(GIRL_CARD);
-        }
-        else {
+        } else {
             playerA.setPlayerImage(BOY_CARD);
         }
 

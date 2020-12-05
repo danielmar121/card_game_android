@@ -3,19 +3,15 @@ package com.daniel.card_game_android;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.Gson;
-import static com.daniel.card_game_android.Constants.*;
+
+import static com.daniel.card_game_android.Constants.MY_SP;
+import static com.daniel.card_game_android.Constants.TOP_TEN;
 
 public class WinnerPage extends ActivityBase {
     public static final String PLAYER_A = "PLAYER_A";
