@@ -5,22 +5,27 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.daniel.card_game_android.Constants.BOY_CARD;
+import static com.daniel.card_game_android.Constants.COMPUTER_CARD;
+import static com.daniel.card_game_android.Constants.COMPUTER_NAME;
+import static com.daniel.card_game_android.Constants.GIRL_CARD;
+
 public class MainActivity extends ActivityBase {
-    public static final String gander = "GANDER";
-    public static final String name = "NAME";
+    public static final String PLAYER_GENDER = "PLAYER_GENDER";
+    public static final String PLAYER_NAME = "PLAYER_NAME";
 
     private final int SECOND = 1000;
     private final int NUMBER_OF_CARDS = 26;
     Deck warDeck;
-    String playerGander;
-    private int playerScoreA = 0, playerScoreB = 0;
-    private String playerName;
     private Timer carousalTimer;
     private MainViewController mainViewController;
-
+    public Player playerA;
+    public Player playerB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,7 @@ public class MainActivity extends ActivityBase {
 
     private void initViews() {
         initDeck();
-        setPlayerGanderAndName();
+        setPlayers();
     }
 
     public void initDeck() {
@@ -47,18 +52,24 @@ public class MainActivity extends ActivityBase {
         warDeck.shuffleCards();
     }
 
-    private void setPlayerGanderAndName() {
+    private void setPlayers() {
         Intent intent = getIntent();
-        playerGander = intent.getStringExtra(gander);
-        playerName = intent.getStringExtra(name);
+        String playerGander = intent.getStringExtra(PLAYER_GENDER);
+        String playerName = intent.getStringExtra(PLAYER_NAME);
 
+        playerA = new Player().setPlayerName(playerName).setPlayerScore(0);
+        playerB = new Player(COMPUTER_CARD, 0, COMPUTER_NAME, -0.142368, 51.501156);
 
         if (playerGander.matches("girl")) {
-            int playerGirl = this.getResources().getIdentifier("player_girl", "drawable", this.getPackageName());
-            Drawable girlImage = getDrawable(playerGirl);
-            mainViewController.setPlayerImage(girlImage);
-            mainViewController.setPlayerCardImage(girlImage);
+            playerA.setPlayerImage(GIRL_CARD);
+        } else {
+            playerA.setPlayerImage(BOY_CARD);
         }
+
+        int playerImageId = this.getResources().getIdentifier(playerA.getPlayerImage(), "drawable", this.getPackageName());
+        Drawable playerImage = getDrawable(playerImageId);
+        mainViewController.setPlayerImage(playerImage);
+        mainViewController.setPlayerCardImage(playerImage);
     }
 
     private void playTurn() {
@@ -89,27 +100,30 @@ public class MainActivity extends ActivityBase {
 
     private void setScore(Card playerCardA, Card playerCardB) {
         if (playerCardA.isStronger(playerCardB)) {
-            playerScoreA++;
-            mainViewController.setPlayerScore(playerScoreA + "");
+            playerA.addScore();
+            mainViewController.setPlayerScore(playerA.getPlayerScore() + "");
         } else {
-            playerScoreB++;
-            mainViewController.setComputerScore(playerScoreB + "");
+            playerB.addScore();
+            mainViewController.setComputerScore(playerB.getPlayerScore() + "");
         }
     }
 
     private void setProgress() {
         double sizeOfBar = 100 / (NUMBER_OF_CARDS / 2.0);
-        double totalTurns = playerScoreA + playerScoreB;
+        double totalTurns = playerA.getPlayerScore() + playerB.getPlayerScore();
         int gameProgress = (int) (totalTurns * sizeOfBar);
         mainViewController.setProgressBar(gameProgress);
     }
 
     private void displayWinner() {
+        Gson gson = new Gson();
         Intent intent = new Intent(this, WinnerPage.class);
-        intent.putExtra(WinnerPage.playerScoreA, playerScoreA);
-        intent.putExtra(WinnerPage.playerScoreB, playerScoreB);
-        intent.putExtra(MainActivity.gander, playerGander);
-        intent.putExtra(name, playerName);
+
+        String playerJsonA = gson.toJson(playerA);
+        String playerJsonB = gson.toJson(playerB);
+        intent.putExtra(WinnerPage.PLAYER_A, playerJsonA);
+        intent.putExtra(WinnerPage.PLAYER_B, playerJsonB);
+
         startActivity(intent);
         finish();
     }

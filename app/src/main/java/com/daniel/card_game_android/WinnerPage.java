@@ -3,21 +3,22 @@ package com.daniel.card_game_android;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.Gson;
 
+import static com.daniel.card_game_android.Constants.MY_SP;
+import static com.daniel.card_game_android.Constants.TOP_TEN;
+
 public class WinnerPage extends ActivityBase {
-    public static final String playerScoreA = "PLAYER_A_SCORE";
-    public static final String playerScoreB = "PLAYER_B_SCORE";
+    public static final String PLAYER_A = "PLAYER_A";
+    public static final String PLAYER_B = "PLAYER_B";
     private TextView winner_LBL_name;
-    private ImageView main_IMG_winner;
+    private ImageView winner_IMG_winner;
+    private Button winner_BTN_new_game;
     private Sound winSound;
 
     @Override
@@ -26,6 +27,7 @@ public class WinnerPage extends ActivityBase {
         setContentView(R.layout.activity_winner_page);
 
         findViews();
+        initViews();
 
         displayWinner();
         winSound.playSound();
@@ -33,27 +35,19 @@ public class WinnerPage extends ActivityBase {
 
     private void findViews() {
         winner_LBL_name = findViewById(R.id.winner_LBL_name);
-        main_IMG_winner = findViewById(R.id.main_IMG_winner);
+        winner_IMG_winner = findViewById(R.id.winner_IMG_winner);
+        winner_BTN_new_game = findViewById(R.id.winner_BTN_new_game);
         winSound = new Sound();
         winSound.setSound(this, R.raw.win_sound);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.winner_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.winner_ITEM_replay:
+    private void initViews() {
+        winner_BTN_new_game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 startNewGame();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+            }
+        });
     }
 
     private void startNewGame() {
@@ -64,44 +58,46 @@ public class WinnerPage extends ActivityBase {
 
     private void displayWinner() {
         int imageId;
-        Intent intent = getIntent();
-        int scoreA = intent.getIntExtra(WinnerPage.playerScoreA, 0);
-        int scoreB = intent.getIntExtra(WinnerPage.playerScoreB, 0);
-        String playerName, playerImage;
-        String gander = intent.getStringExtra(MainActivity.gander);
+        String playerImage;
+        String playerName;
 
-        if (scoreA > scoreB) {
-            if (gander.matches("girl"))
-                playerImage = "player_girl";
-            else
-                playerImage = "player_boy";
-            playerName = intent.getStringExtra(MainActivity.name);
-            saveScore(scoreA, playerName);
+        Intent intent = getIntent();
+        Gson gson = new Gson();
+
+        String playerJsonA = intent.getStringExtra(PLAYER_A);
+        String playerJsonB = intent.getStringExtra(PLAYER_B);
+        Player playerA = gson.fromJson(playerJsonA, Player.class);
+        Player playerB = gson.fromJson(playerJsonB, Player.class);
+
+        if (playerA.getPlayerScore() > playerB.getPlayerScore()) {
+            playerImage = playerA.getPlayerImage();
+            playerName = playerA.getPlayerName();
+            saveScore(playerA);
         } else {
-            playerImage = "player_computer";
-            playerName = "Computer";
-            saveScore(scoreB, playerName);
+            playerImage = playerB.getPlayerImage();
+            playerName = playerB.getPlayerName();
+            saveScore(playerB);
         }
 
         imageId = this.getResources().getIdentifier(playerImage, "drawable", this.getPackageName());
-        main_IMG_winner.setImageDrawable(getDrawable(imageId));
+        winner_IMG_winner.setImageDrawable(getDrawable(imageId));
         winner_LBL_name.setText(playerName);
     }
 
-    private void saveScore(int score, String playerName) {
+    private void saveScore(Player playerA) {
         TopTenRecords topTenRecords;
 
-        SharedPreferences prefs = getSharedPreferences("MY_SP", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(MY_SP, MODE_PRIVATE);
         Gson gson = new Gson();
 
-        String jsonFromMemory = prefs.getString("TopTen", "");
+        String jsonFromMemory = prefs.getString(TOP_TEN, "");
         if (jsonFromMemory == "") {
             topTenRecords = new TopTenRecords();
         } else {
             topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
         }
 
-        Record record = new Record(playerName, score);
+        Record record = new Record(playerA.getPlayerName(), playerA.getPlayerScore());
         boolean isAdd = topTenRecords.addRecord(record);
 
         if (isAdd) {
@@ -110,15 +106,5 @@ public class WinnerPage extends ActivityBase {
             editor.putString("TopTen", json);
             editor.apply();
         }
-
-        jsonFromMemory = prefs.getString("TopTen", "");
-        topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
-    }
-
-    @Override
-    protected void onDestroy() {
-        Intent intent = new Intent(this, WelcomePage.class);
-        startActivity(intent);
-        super.onDestroy();
     }
 }

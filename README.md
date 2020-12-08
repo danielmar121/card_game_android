@@ -10,4 +10,5 @@
 6. ~~RECORD TABLE - ten best records.~~
 7. Map with the point where the record taken.
 8. ~~Game progress bar.~~
-9. Bonus
+9. Load background from repository
+10. Bonus
