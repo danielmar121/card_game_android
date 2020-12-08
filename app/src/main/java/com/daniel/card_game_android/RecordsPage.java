@@ -1,5 +1,6 @@
 package com.daniel.card_game_android;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -39,4 +40,12 @@ public class RecordsPage extends AppCompatActivity {
             topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
         }
     }
+/*
+    private void insertLocation(int index) {
+        Intent intent = new Intent(RecordsPage.this, MapsActivity.class);
+        intent.putExtra(MapsActivity.LATITUDE, rec[index].getLocation()[0]);
+        intent.putExtra(MapsActivity.LONGITUDE, rec[index].getLocation()[1]);
+        intent.putExtra(MapsActivity.NAME, rec[index].getName());
+        startActivity(intent);
+    }*/
 }
