@@ -30,11 +30,15 @@ public class RecordItemAdapter extends ArrayAdapter<Record> {
 
         postTitleView.setText(records.get(position).getName());
 
-        TextView postDateView = (TextView) rowView
+        TextView postScoreView = (TextView) rowView
                 .findViewById(R.id.record_TXT_player_score);
 
-        postDateView.setText(records.get(position).getScore() + "");
+        postScoreView.setText(records.get(position).getScore() + "");
 
+        TextView postDateView = (TextView) rowView
+                .findViewById(R.id.record_TXT_date);
+
+        postDateView.setText(records.get(position).getDate() + "");
         return rowView;
     }
 }

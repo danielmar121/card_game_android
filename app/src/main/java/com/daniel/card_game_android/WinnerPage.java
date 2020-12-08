@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
+
 import static com.daniel.card_game_android.Constants.MY_SP;
 import static com.daniel.card_game_android.Constants.TOP_TEN;
 
@@ -86,6 +88,8 @@ public class WinnerPage extends ActivityBase {
 
     private void saveScore(Player playerA) {
         TopTenRecords topTenRecords;
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy\nHH:mm:ss");
+        String date = format.format(System.currentTimeMillis());
 
         SharedPreferences prefs = getSharedPreferences(MY_SP, MODE_PRIVATE);
         Gson gson = new Gson();
@@ -97,7 +101,7 @@ public class WinnerPage extends ActivityBase {
             topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
         }
 
-        Record record = new Record(playerA.getPlayerName(), playerA.getPlayerScore());
+        Record record = new Record(playerA.getPlayerName(), playerA.getPlayerScore(), date);
         boolean isAdd = topTenRecords.addRecord(record);
 
         if (isAdd) {
