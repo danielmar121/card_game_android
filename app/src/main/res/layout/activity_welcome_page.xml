@@ -92,6 +92,17 @@
             android:layout_gravity="center"
             android:background="@drawable/circle_corners_button" />
 
+        <CheckBox
+            android:id="@+id/welcome_CBX_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/location"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_corners_button"
+            android:onClick="onCheckboxClicked"/>
+
     </LinearLayout>
 
 </RelativeLayout>
