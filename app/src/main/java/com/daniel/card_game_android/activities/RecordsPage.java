@@ -18,10 +18,7 @@ import static com.daniel.card_game_android.utils.Constants.TOP_TEN;
 
 
 public class RecordsPage extends AppCompatActivity {
-    private RecordItemAdapter itemAdapter;
     private TopTenRecords topTenRecords;
-    private FragmentList fragmentList;
-    private ImageView record_IMG_background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +29,15 @@ public class RecordsPage extends AppCompatActivity {
 
         findViews();
 
-        itemAdapter = new RecordItemAdapter(this,
+        RecordItemAdapter itemAdapter = new RecordItemAdapter(this,
                 R.layout.record_item, topTenRecords.getRecords());
 
-        fragmentList = new FragmentList(itemAdapter);
+        FragmentList fragmentList = new FragmentList(itemAdapter);
         getSupportFragmentManager().beginTransaction().add(R.id.record_LAY_list, fragmentList).commit();
     }
 
     private void findViews() {
-        record_IMG_background = findViewById(R.id.record_IMG_background);
+        ImageView record_IMG_background = findViewById(R.id.record_IMG_background);
         MyScreenUtils.updateBackground(Constants.BACKGROUND_NAME, this, record_IMG_background);
     }
 
@@ -50,7 +47,7 @@ public class RecordsPage extends AppCompatActivity {
         Gson gson = new Gson();
 
         String jsonFromMemory = prefs.getString(TOP_TEN, "");
-        if (jsonFromMemory != "") {
+        if (!jsonFromMemory.equals("")) {
             topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
         }
     }

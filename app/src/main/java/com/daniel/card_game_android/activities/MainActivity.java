@@ -3,7 +3,6 @@ package com.daniel.card_game_android.activities;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.daniel.card_game_android.R;
 import com.daniel.card_game_android.objects.Card;
@@ -134,7 +133,6 @@ public class MainActivity extends ActivityBase {
     }
 
     public void startCounting() {
-        Log.d("pttt", "startCounting");
         carousalTimer = new Timer();
         carousalTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -156,7 +154,6 @@ public class MainActivity extends ActivityBase {
 
     @Override
     protected void onStart() {
-        Log.d("pttt", "onStart");
         if (carousalTimer != null) {
             startCounting();
             mainViewController.playSound();
@@ -165,20 +162,7 @@ public class MainActivity extends ActivityBase {
     }
 
     @Override
-    protected void onResume() {
-        Log.d("pttt", "onResume");
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d("pttt", "onPause");
-        super.onPause();
-    }
-
-    @Override
     protected void onStop() {
-        Log.d("pttt", "onStop");
         if (carousalTimer != null) {
             stopCounting();
             mainViewController.stopSound();
@@ -186,9 +170,4 @@ public class MainActivity extends ActivityBase {
         super.onStop();
     }
 
-    @Override
-    protected void onDestroy() {
-        Log.d("pttt", "onDestroy");
-        super.onDestroy();
-    }
 }

@@ -16,7 +16,7 @@ import com.daniel.card_game_android.objects.Record;
 import com.daniel.card_game_android.services.RecordItemAdapter;
 
 public class FragmentList extends Fragment {
-    private RecordItemAdapter itemAdapter;
+    private final RecordItemAdapter itemAdapter;
     private ListView recordsListView;
 
     public FragmentList(RecordItemAdapter itemAdapter) {

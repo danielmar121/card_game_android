@@ -14,8 +14,8 @@ import com.daniel.card_game_android.objects.Record;
 import java.util.ArrayList;
 
 public class RecordItemAdapter extends ArrayAdapter<Record> {
-    private Activity myContext;
-    private ArrayList<Record> records;
+    private final Activity myContext;
+    private final ArrayList<Record> records;
 
     public RecordItemAdapter(Context context, int textViewResourceId,
                              ArrayList<Record> records) {

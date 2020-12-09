@@ -22,10 +22,8 @@ public class Player {
         return playerImage;
     }
 
-    public Player setPlayerImage(String playerImage) {
+    public void setPlayerImage(String playerImage) {
         this.playerImage = playerImage;
-        return this;
-
     }
 
     public int getPlayerScore() {

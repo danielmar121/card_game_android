@@ -26,7 +26,7 @@ public class WinnerPage extends ActivityBase {
     public static final String PLAYER_A = "PLAYER_A";
     public static final String PLAYER_B = "PLAYER_B";
     private TextView winner_LBL_name;
-    private ImageView winner_IMG_winner, winner_IMG_background;
+    private ImageView winner_IMG_winner;
     private Button winner_BTN_new_game;
     private Sound winSound;
 
@@ -50,7 +50,7 @@ public class WinnerPage extends ActivityBase {
         winSound = new Sound();
         winSound.setSound(this, R.raw.win_sound);
 
-        winner_IMG_background = findViewById(R.id.winner_IMG_background);
+        ImageView winner_IMG_background = findViewById(R.id.winner_IMG_background);
         MyScreenUtils.updateBackground(Constants.BACKGROUND_NAME, this, winner_IMG_background);
     }
 
@@ -106,7 +106,7 @@ public class WinnerPage extends ActivityBase {
         Gson gson = new Gson();
 
         String jsonFromMemory = prefs.getString(TOP_TEN, "");
-        if (jsonFromMemory == "") {
+        if (jsonFromMemory.equals("")) {
             topTenRecords = new TopTenRecords();
         } else {
             topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);

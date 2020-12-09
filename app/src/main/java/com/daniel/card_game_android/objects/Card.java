@@ -29,6 +29,6 @@ public class Card {
     }
 
     public boolean isStronger(Card card) {
-        return this.strength > card.strength;
+        return this.strength > card.getStrength();
     }
 }
