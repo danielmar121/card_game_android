@@ -1,13 +1,17 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.daniel.card_game_android.fragments.FragmentList;
+import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.services.RecordItemAdapter;
+import com.daniel.card_game_android.objects.TopTenRecords;
 import com.google.gson.Gson;
 
-import static com.daniel.card_game_android.Constants.TOP_TEN;
+import static com.daniel.card_game_android.utils.Constants.TOP_TEN;
 
 
 public class RecordsPage extends AppCompatActivity {

@@ -1,19 +1,24 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.daniel.card_game_android.objects.Card;
+import com.daniel.card_game_android.objects.Deck;
+import com.daniel.card_game_android.services.MainViewController;
+import com.daniel.card_game_android.objects.Player;
+import com.daniel.card_game_android.R;
 import com.google.gson.Gson;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.daniel.card_game_android.Constants.BOY_CARD;
-import static com.daniel.card_game_android.Constants.COMPUTER_CARD;
-import static com.daniel.card_game_android.Constants.COMPUTER_NAME;
-import static com.daniel.card_game_android.Constants.GIRL_CARD;
+import static com.daniel.card_game_android.utils.Constants.BOY_CARD;
+import static com.daniel.card_game_android.utils.Constants.COMPUTER_CARD;
+import static com.daniel.card_game_android.utils.Constants.COMPUTER_NAME;
+import static com.daniel.card_game_android.utils.Constants.GIRL_CARD;
 
 public class MainActivity extends ActivityBase {
     public static final String PLAYER_GENDER = "PLAYER_GENDER";

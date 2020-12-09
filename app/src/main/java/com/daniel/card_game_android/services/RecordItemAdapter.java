@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.services;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.objects.Record;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.services;
 
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -7,6 +7,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.activities.MainActivity;
 
 public class MainViewController {
 

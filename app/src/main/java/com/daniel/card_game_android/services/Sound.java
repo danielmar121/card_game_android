@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.services;
 
 import android.content.Context;
 import android.media.MediaPlayer;

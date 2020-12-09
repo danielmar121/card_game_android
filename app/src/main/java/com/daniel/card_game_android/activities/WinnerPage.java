@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,12 +8,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.daniel.card_game_android.objects.Player;
+import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.objects.Record;
+import com.daniel.card_game_android.services.Sound;
+import com.daniel.card_game_android.objects.TopTenRecords;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 
-import static com.daniel.card_game_android.Constants.MY_SP;
-import static com.daniel.card_game_android.Constants.TOP_TEN;
+import static com.daniel.card_game_android.utils.Constants.MY_SP;
+import static com.daniel.card_game_android.utils.Constants.TOP_TEN;
 
 public class WinnerPage extends ActivityBase {
     public static final String PLAYER_A = "PLAYER_A";

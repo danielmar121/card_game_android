@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.daniel.card_game_android.R;
 
 public class WelcomePage extends AppCompatActivity {
     EditText welcome_INPT_name;

@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Card_game_android">
-        <activity android:name=".RecordsPage" />
-        <activity android:name=".WelcomePage">
+        <activity android:name=".activities.RecordsPage" />
+        <activity android:name=".activities.WelcomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,10 +18,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WinnerPage"
+            android:name=".activities.WinnerPage"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="landscape" />
     </application>
 

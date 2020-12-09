@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.objects;
 
 public class Player {
     private String playerImage;
