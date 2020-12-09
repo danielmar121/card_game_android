@@ -6,16 +6,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.utils.Constants;
+import com.daniel.card_game_android.utils.MyScreenUtils;
 
 public class WelcomePage extends AppCompatActivity {
     EditText welcome_INPT_name;
     ImageButton welcome_BTN_boy, welcome_BTN_girl;
     Button welcome_BTN_records;
+    ImageView welcome_IMG_background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,9 @@ public class WelcomePage extends AppCompatActivity {
         welcome_BTN_boy = findViewById(R.id.welcome_BTN_boy);
         welcome_BTN_girl = findViewById(R.id.welcome_BTN_girl);
         welcome_BTN_records = findViewById(R.id.welcome_BTN_records);
+        welcome_IMG_background = findViewById(R.id.welcome_IMG_background);
+
+        MyScreenUtils.updateBackground(Constants.BACKGROUND_NAME, this, welcome_IMG_background);
     }
 
     private void initViews() {

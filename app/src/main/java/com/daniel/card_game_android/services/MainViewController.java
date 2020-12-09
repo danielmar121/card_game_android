@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.daniel.card_game_android.R;
 import com.daniel.card_game_android.activities.MainActivity;
+import com.daniel.card_game_android.utils.Constants;
+import com.daniel.card_game_android.utils.MyScreenUtils;
 
 public class MainViewController {
 
@@ -18,6 +20,7 @@ public class MainViewController {
     private TextView main_LBL_score_player_A, main_LBL_score_player_B;
     private ImageView main_IMG_player_A_card, main_IMG_player_B_card;
     private ImageView main_IMG_player_A;
+    private ImageView main_IMG_background;
     private Sound tickingSound;
     private ProgressBar main_PGR_game_progress;
     private ImageButton main_BTN_play;
@@ -37,6 +40,9 @@ public class MainViewController {
         tickingSound = new Sound();
         main_PGR_game_progress = activity.findViewById(R.id.main_PGR_game_progress);
         main_BTN_play = activity.findViewById(R.id.main_BTN_play);
+        main_IMG_background = activity.findViewById(R.id.main_IMG_background);
+
+        MyScreenUtils.updateBackground(Constants.BACKGROUND_NAME, activity, main_IMG_background);
     }
 
     private void initViews() {
@@ -85,11 +91,4 @@ public class MainViewController {
     public void stopSound() {
         tickingSound.stopSound();
     }
-
-//  public void updateBackground(int id) {
-//        Glide
-//                .with(activity)
-//                .load(id)
-//                .into(main_IMG_background);
-//    }
 }

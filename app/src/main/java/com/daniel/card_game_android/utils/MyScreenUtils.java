@@ -1,8 +1,12 @@
 package com.daniel.card_game_android.utils;
 
+import android.app.Activity;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 
 public class MyScreenUtils {
 
@@ -25,4 +29,8 @@ public class MyScreenUtils {
                         | View.SYSTEM_UI_FLAG_LOW_PROFILE);
     }
 
+    public static void updateBackground(String imageName, Activity activity, ImageView place) {
+        int backgroundId = activity.getResources().getIdentifier(imageName, "drawable", activity.getPackageName());
+        Glide.with(activity).load(backgroundId).into(place);
+    }
 }

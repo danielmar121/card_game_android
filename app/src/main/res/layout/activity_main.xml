@@ -6,11 +6,11 @@
     tools:context=".activities.MainActivity">
 
     <ImageView
+        android:id="@+id/main_IMG_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/background"
-        android:scaleType="fitXY"
-        android:src="@drawable/iron_background" />
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"

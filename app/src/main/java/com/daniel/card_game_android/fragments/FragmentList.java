@@ -12,8 +12,8 @@ import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 
 import com.daniel.card_game_android.R;
-import com.daniel.card_game_android.services.RecordItemAdapter;
 import com.daniel.card_game_android.objects.Record;
+import com.daniel.card_game_android.services.RecordItemAdapter;
 
 public class FragmentList extends Fragment {
     private RecordItemAdapter itemAdapter;

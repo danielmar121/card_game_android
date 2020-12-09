@@ -5,11 +5,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.daniel.card_game_android.R;
 import com.daniel.card_game_android.objects.Card;
 import com.daniel.card_game_android.objects.Deck;
-import com.daniel.card_game_android.services.MainViewController;
 import com.daniel.card_game_android.objects.Player;
-import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.services.MainViewController;
 import com.google.gson.Gson;
 
 import java.util.Timer;

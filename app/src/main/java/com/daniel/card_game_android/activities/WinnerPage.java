@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.daniel.card_game_android.objects.Player;
 import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.objects.Player;
 import com.daniel.card_game_android.objects.Record;
-import com.daniel.card_game_android.services.Sound;
 import com.daniel.card_game_android.objects.TopTenRecords;
+import com.daniel.card_game_android.services.Sound;
+import com.daniel.card_game_android.utils.Constants;
+import com.daniel.card_game_android.utils.MyScreenUtils;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -24,7 +26,7 @@ public class WinnerPage extends ActivityBase {
     public static final String PLAYER_A = "PLAYER_A";
     public static final String PLAYER_B = "PLAYER_B";
     private TextView winner_LBL_name;
-    private ImageView winner_IMG_winner;
+    private ImageView winner_IMG_winner, winner_IMG_background;
     private Button winner_BTN_new_game;
     private Sound winSound;
 
@@ -44,8 +46,12 @@ public class WinnerPage extends ActivityBase {
         winner_LBL_name = findViewById(R.id.winner_LBL_name);
         winner_IMG_winner = findViewById(R.id.winner_IMG_winner);
         winner_BTN_new_game = findViewById(R.id.winner_BTN_new_game);
+
         winSound = new Sound();
         winSound.setSound(this, R.raw.win_sound);
+
+        winner_IMG_background = findViewById(R.id.winner_IMG_background);
+        MyScreenUtils.updateBackground(Constants.BACKGROUND_NAME, this, winner_IMG_background);
     }
 
     private void initViews() {
