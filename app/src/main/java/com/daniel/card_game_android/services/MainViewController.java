@@ -1,17 +1,20 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.services;
 
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.activities.MainActivity;
+import com.daniel.card_game_android.utils.Constants;
+import com.daniel.card_game_android.utils.MyScreenUtils;
+
 public class MainViewController {
 
-    private MainActivity activity;
-
+    private final MainActivity activity;
     private TextView main_LBL_score_player_A, main_LBL_score_player_B;
     private ImageView main_IMG_player_A_card, main_IMG_player_B_card;
     private ImageView main_IMG_player_A;
@@ -34,13 +37,15 @@ public class MainViewController {
         tickingSound = new Sound();
         main_PGR_game_progress = activity.findViewById(R.id.main_PGR_game_progress);
         main_BTN_play = activity.findViewById(R.id.main_BTN_play);
+
+        ImageView main_IMG_background = activity.findViewById(R.id.main_IMG_background);
+        MyScreenUtils.updateBackground(Constants.BACKGROUND_NAME, activity, main_IMG_background);
     }
 
     private void initViews() {
         main_BTN_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("pttt", "onClick");
                 main_BTN_play.setEnabled(false);
                 activity.startCounting();
             }
@@ -82,11 +87,4 @@ public class MainViewController {
     public void stopSound() {
         tickingSound.stopSound();
     }
-
-//  public void updateBackground(int id) {
-//        Glide
-//                .with(activity)
-//                .load(id)
-//                .into(main_IMG_background);
-//    }
 }

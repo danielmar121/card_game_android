@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.objects;
 
 import java.util.ArrayList;
 import java.util.Collections;

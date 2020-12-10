@@ -1,19 +1,23 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 
+import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.objects.Card;
+import com.daniel.card_game_android.objects.Deck;
+import com.daniel.card_game_android.objects.Player;
+import com.daniel.card_game_android.services.MainViewController;
 import com.google.gson.Gson;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.daniel.card_game_android.Constants.BOY_CARD;
-import static com.daniel.card_game_android.Constants.COMPUTER_CARD;
-import static com.daniel.card_game_android.Constants.COMPUTER_NAME;
-import static com.daniel.card_game_android.Constants.GIRL_CARD;
+import static com.daniel.card_game_android.utils.Constants.BOY_CARD;
+import static com.daniel.card_game_android.utils.Constants.COMPUTER_CARD;
+import static com.daniel.card_game_android.utils.Constants.COMPUTER_NAME;
+import static com.daniel.card_game_android.utils.Constants.GIRL_CARD;
 
 public class MainActivity extends ActivityBase {
     public static final String PLAYER_GENDER = "PLAYER_GENDER";
@@ -129,7 +133,6 @@ public class MainActivity extends ActivityBase {
     }
 
     public void startCounting() {
-        Log.d("pttt", "startCounting");
         carousalTimer = new Timer();
         carousalTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -151,7 +154,6 @@ public class MainActivity extends ActivityBase {
 
     @Override
     protected void onStart() {
-        Log.d("pttt", "onStart");
         if (carousalTimer != null) {
             startCounting();
             mainViewController.playSound();
@@ -160,20 +162,7 @@ public class MainActivity extends ActivityBase {
     }
 
     @Override
-    protected void onResume() {
-        Log.d("pttt", "onResume");
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d("pttt", "onPause");
-        super.onPause();
-    }
-
-    @Override
     protected void onStop() {
-        Log.d("pttt", "onStop");
         if (carousalTimer != null) {
             stopCounting();
             mainViewController.stopSound();
@@ -181,9 +170,4 @@ public class MainActivity extends ActivityBase {
         super.onStop();
     }
 
-    @Override
-    protected void onDestroy() {
-        Log.d("pttt", "onDestroy");
-        super.onDestroy();
-    }
 }

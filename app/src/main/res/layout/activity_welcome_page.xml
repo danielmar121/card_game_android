@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WelcomePage">
+    tools:context=".activities.WelcomePage">
 
     <ImageView
+        android:id="@+id/welcome_IMG_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/iron_background"
-        android:scaleType="fitXY"
-        android:contentDescription="@string/background" />
+        android:contentDescription="@string/background"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"

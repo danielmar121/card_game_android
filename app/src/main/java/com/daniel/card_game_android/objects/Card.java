@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.objects;
 
 public class Card {
     private String imageName;
@@ -29,6 +29,6 @@ public class Card {
     }
 
     public boolean isStronger(Card card) {
-        return this.strength > card.strength;
+        return this.strength > card.getStrength();
     }
 }
