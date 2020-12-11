@@ -13,6 +13,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 public class MyLocation {
+    /*
     private Location currentLocation;
 
 
@@ -88,5 +89,5 @@ public class MyLocation {
     public Location getCurrentLocation() {
         return currentLocation;
     }
-
+*/
 }
