@@ -1,15 +1,22 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.fragments;
+
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
+import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.objects.Record;
+import com.daniel.card_game_android.services.RecordItemAdapter;
+
 public class FragmentList extends Fragment {
-    private RecordItemAdapter itemAdapter;
+    private final RecordItemAdapter itemAdapter;
     private ListView recordsListView;
 
     public FragmentList(RecordItemAdapter itemAdapter) {
@@ -24,8 +31,6 @@ public class FragmentList extends Fragment {
         findViews(view);
         initViews();
 
-        recordsListView.setAdapter(itemAdapter);
-
         return view;
     }
 
@@ -34,14 +39,13 @@ public class FragmentList extends Fragment {
     }
 
     private void initViews() {
-//        list_BTN_update.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (callBack_top != null) {
-//                    callBack_top.displayLocation(32.05889116392735, 34.811619248137916);
-//                }
-//            }
-//        });
+        recordsListView.setAdapter(itemAdapter);
+        recordsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
+                Record record = itemAdapter.getItem(position);
+                Log.d("clickList", "onItemClick: " + record.toString());
+            }
+        });
     }
 
 //list_BTN_update    private CallBack_Top callBack_top;

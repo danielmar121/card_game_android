@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.objects;
 
 public class Player {
     private String playerImage;
@@ -22,10 +22,8 @@ public class Player {
         return playerImage;
     }
 
-    public Player setPlayerImage(String playerImage) {
+    public void setPlayerImage(String playerImage) {
         this.playerImage = playerImage;
-        return this;
-
     }
 
     public int getPlayerScore() {

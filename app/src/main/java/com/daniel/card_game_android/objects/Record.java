@@ -1,19 +1,19 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.objects;
 
 public class Record implements Comparable {
 
     private String name;
-    private long date;
+    private String date;
     private int score;
     private double lon, lat;
-
 
     public Record() {
     }
 
-    public Record(String name, int score) {
+    public Record(String name, int score, String date) {
         this.name = name;
         this.score = score;
+        this.date = date;
     }
 
     public String getName() {
@@ -25,11 +25,11 @@ public class Record implements Comparable {
         return this;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public Record setDate(long date) {
+    public Record setDate(String date) {
         this.date = date;
         return this;
     }
@@ -64,5 +64,16 @@ public class Record implements Comparable {
     @Override
     public int compareTo(Object record) {
         return ((Record) record).getScore() - this.score;
+    }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "name='" + name + '\'' +
+                ", date=" + date +
+                ", score=" + score +
+                ", lon=" + lon +
+                ", lat=" + lat +
+                '}';
     }
 }

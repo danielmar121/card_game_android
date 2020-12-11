@@ -1,8 +1,10 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.activities;
 
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.daniel.card_game_android.utils.MyScreenUtils;
 
 public abstract class ActivityBase extends AppCompatActivity {
     protected boolean isDoubleBackPressToClose = false;

@@ -1,4 +1,4 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.services;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.objects.Record;
+
 import java.util.ArrayList;
 
 public class RecordItemAdapter extends ArrayAdapter<Record> {
-    private Activity myContext;
-    private ArrayList<Record> records;
+    private final Activity myContext;
+    private final ArrayList<Record> records;
 
     public RecordItemAdapter(Context context, int textViewResourceId,
                              ArrayList<Record> records) {
@@ -30,11 +33,15 @@ public class RecordItemAdapter extends ArrayAdapter<Record> {
 
         postTitleView.setText(records.get(position).getName());
 
-        TextView postDateView = (TextView) rowView
+        TextView postScoreView = (TextView) rowView
                 .findViewById(R.id.record_TXT_player_score);
 
-        postDateView.setText(records.get(position).getScore() + "");
+        postScoreView.setText(records.get(position).getScore() + "");
 
+        TextView postDateView = (TextView) rowView
+                .findViewById(R.id.record_TXT_date);
+
+        postDateView.setText(records.get(position).getDate() + "");
         return rowView;
     }
 }

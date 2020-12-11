@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <ImageView
+        android:id="@+id/main_IMG_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/background"
-        android:scaleType="fitXY"
-        android:src="@drawable/iron_background" />
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                 android:layout_height="8dip"
                 android:indeterminateOnly="false"
                 android:max="100"
-                android:progressDrawable="@drawable/progress_bar_states"></ProgressBar>
+                android:progressDrawable="@drawable/progress_bar_states" />
 
             <LinearLayout
                 android:layout_width="match_parent"
