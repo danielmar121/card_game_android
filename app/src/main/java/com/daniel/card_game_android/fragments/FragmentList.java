@@ -47,6 +47,14 @@ public class FragmentList extends Fragment {
             }
         });
     }
+/*
+    private void insertLocation(int index) {
+        Intent intent = new Intent(RecordsPage.this, MapsActivity.class);
+        intent.putExtra(MapsActivity.LATITUDE, rec[index].getLocation()[0]);
+        intent.putExtra(MapsActivity.LONGITUDE, rec[index].getLocation()[1]);
+        intent.putExtra(MapsActivity.NAME, rec[index].getName());
+        startActivity(intent);
+    }*/
 
 //list_BTN_update    private CallBack_Top callBack_top;
 //
