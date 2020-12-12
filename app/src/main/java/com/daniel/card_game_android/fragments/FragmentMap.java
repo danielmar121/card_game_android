@@ -20,9 +20,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class FragmentMap extends Fragment {
 
-    MapView mMapView;
-    double latitude = 51.501024, longitude = -0.142666;
-    String name = "Buckingham Palace", score = "Always my winner";
+    private MapView mMapView;
+    private double latitude = 51.501024, longitude = -0.142666;
+    private String name = "Buckingham Palace", score = "Always my winner";
     private GoogleMap googleMap;
     private MarkerOptions currentWinner;
 
