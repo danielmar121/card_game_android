@@ -27,9 +27,9 @@ public class MainActivity extends ActivityBase {
 
     private final int SECOND = 1000;
     private final int NUMBER_OF_CARDS = 26;
-    public Player playerA;
-    public Player playerB;
-    Deck warDeck;
+    private Player playerA;
+    private Player playerB;
+    private Deck warDeck;
     private Timer carousalTimer;
     private MainViewController mainViewController;
 

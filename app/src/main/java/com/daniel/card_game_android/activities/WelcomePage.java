@@ -26,7 +26,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class WelcomePage extends AppCompatActivity {
-    private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
+    private final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
     private Location currentLocation;
     private EditText welcome_INPT_name;
     private ImageButton welcome_BTN_boy, welcome_BTN_girl;
@@ -38,7 +38,9 @@ public class WelcomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
         findViews();
         initViews();
     }
