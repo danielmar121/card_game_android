@@ -8,7 +8,7 @@
 4. ~~Add sounds to the application~~
 5. ~~ICON for the application~~
 6. ~~RECORD TABLE - ten best records.~~
-7. Map with the point where the record taken.
+7. ~~Map with the point where the record taken.~~
 8. ~~Game progress bar.~~
-9. Load background from repository
-10. Bonus
+9. ~~Load background from repository~~
+10. ~~Bonus~~
