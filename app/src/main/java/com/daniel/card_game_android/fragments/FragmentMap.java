@@ -46,9 +46,6 @@ public class FragmentMap extends Fragment {
             public void onMapReady(GoogleMap mMap) {
                 googleMap = mMap;
 
-//                // For showing a move to my location button
-//                googleMap.setMyLocationEnabled(true);
-
                 // For dropping a marker at a point on the Map
                 LatLng sydney = new LatLng(latitude, longitude);
                 googleMap.addMarker(new MarkerOptions().position(sydney).title(name).snippet(score));
