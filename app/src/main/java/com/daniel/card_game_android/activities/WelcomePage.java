@@ -20,6 +20,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+
+import com.daniel.card_game_android.MapsActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -80,7 +82,7 @@ public class WelcomePage extends AppCompatActivity {
     }
 
     private void showRecords() {
-        Intent intent = new Intent(this, RecordsPage.class);
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 

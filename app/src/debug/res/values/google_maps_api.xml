@@ -1,24 +1,3 @@
 <resources>
-    <!--
-    TO DO : Before you run your application, you need a Google Maps API key.
-
-    To get one, follow this link, follow the directions and press "Create" at the end:
-
-    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=FC:D5:7B:79:B4:75:0F:F9:04:62:54:6F:CE:E3:F1:F7:06:4A:2A:63%3Bcom.daniel.card_game_android
-
-    You can also add your credentials to an existing key, using these values:
-
-    Package name:
-    com.daniel.card_game_android
-
-    SHA-1 certificate fingerprint:
-    FC:D5:7B:79:B4:75:0F:F9:04:62:54:6F:CE:E3:F1:F7:06:4A:2A:63
-
-    Alternatively, follow the directions here:
-    https://developers.google.com/maps/documentation/android/start#get-key
-
-    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
-    string in this file.
-    -->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDe-fwoftFUPxwAsrrWoWBvoaXPMgWrzgg</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAj8-naRMbffkBPTKOxhjCH2DTrjCJZK3E</string>
 </resources>

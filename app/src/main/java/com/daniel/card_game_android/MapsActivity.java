@@ -1,9 +1,11 @@
 package com.daniel.card_game_android;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.os.Bundle;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,14 +14,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    final static String LATITUDE = "LATITUDE";
-    final static String LONGITUDE = "LONGITUDE";
-    final static String NAME = "NAME";
-    double latitude, longitude;
-    String name;
+    double latitude=0.142666, longitude= 51.501024;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +30,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        latitude = getIntent().getDoubleExtra(LATITUDE, 0.0);
-        longitude = getIntent().getDoubleExtra(LONGITUDE, 0.0);
-        name = getIntent().getStringExtra(NAME);
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -54,7 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng latLng = new LatLng(latitude, longitude);
         MarkerOptions markerOptions = new MarkerOptions().position(latLng)
-                .title(name);
+                .title("Daniel");
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.addMarker(markerOptions);
@@ -65,5 +50,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(center);
         mMap.animateCamera(zoom);
     }
-
 }
+
