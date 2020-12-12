@@ -97,7 +97,7 @@ public class WinnerPage extends ActivityBase {
         winner_LBL_name.setText(playerName);
     }
 
-    private void saveScore(Player playerA) {
+    private void saveScore(Player player) {
         TopTenRecords topTenRecords;
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy\nHH:mm:ss");
         String date = format.format(System.currentTimeMillis());
@@ -112,7 +112,12 @@ public class WinnerPage extends ActivityBase {
             topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
         }
 
-        Record record = new Record(playerA.getPlayerName(), playerA.getPlayerScore(), date);
+        Record record = new Record(player.getPlayerName(),
+                player.getPlayerScore(),
+                date,
+                player.getPlayerLatitude(),
+                player.getPlayerLongitude());
+
         boolean isAdd = topTenRecords.addRecord(record);
 
         if (isAdd) {
@@ -122,4 +127,5 @@ public class WinnerPage extends ActivityBase {
             editor.apply();
         }
     }
+
 }

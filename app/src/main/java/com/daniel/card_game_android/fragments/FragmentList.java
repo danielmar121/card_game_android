@@ -2,7 +2,6 @@ package com.daniel.card_game_android.fragments;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +11,18 @@ import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 
 import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.interfaces.RecordCallBack;
 import com.daniel.card_game_android.objects.Record;
 import com.daniel.card_game_android.services.RecordItemAdapter;
 
 public class FragmentList extends Fragment {
     private final RecordItemAdapter itemAdapter;
     private ListView recordsListView;
+    private RecordCallBack recordCallBack;
 
-    public FragmentList(RecordItemAdapter itemAdapter) {
+    public FragmentList(RecordItemAdapter itemAdapter, RecordCallBack recordCallBack) {
         this.itemAdapter = itemAdapter;
+        this.recordCallBack = recordCallBack;
     }
 
     @Override
@@ -43,22 +45,10 @@ public class FragmentList extends Fragment {
         recordsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
                 Record record = itemAdapter.getItem(position);
-                Log.d("clickList", "onItemClick: " + record.toString());
+                if (recordCallBack != null) {
+                    recordCallBack.displayLocation(record);
+                }
             }
         });
     }
-/*
-    private void insertLocation(int index) {
-        Intent intent = new Intent(RecordsPage.this, MapsActivity.class);
-        intent.putExtra(MapsActivity.LATITUDE, rec[index].getLocation()[0]);
-        intent.putExtra(MapsActivity.LONGITUDE, rec[index].getLocation()[1]);
-        intent.putExtra(MapsActivity.NAME, rec[index].getName());
-        startActivity(intent);
-    }*/
-
-//list_BTN_update    private CallBack_Top callBack_top;
-//
-//    public void setCallBack_top(CallBack_Top _callBack_top) {
-//        this.callBack_top = _callBack_top;
-//    }
 }

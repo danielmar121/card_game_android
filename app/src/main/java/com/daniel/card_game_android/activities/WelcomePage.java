@@ -1,5 +1,7 @@
 package com.daniel.card_game_android.activities;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,31 +15,27 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-
-import com.daniel.card_game_android.MapsActivity;
+import com.daniel.card_game_android.R;
+import com.daniel.card_game_android.services.MyLocation;
+import com.daniel.card_game_android.utils.Constants;
+import com.daniel.card_game_android.utils.MyScreenUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import com.daniel.card_game_android.R;
-import com.daniel.card_game_android.utils.Constants;
-import com.daniel.card_game_android.utils.MyScreenUtils;
-
 public class WelcomePage extends AppCompatActivity {
-    EditText welcome_INPT_name;
-    ImageButton welcome_BTN_boy, welcome_BTN_girl;
-    Button welcome_BTN_records;
-    static Location currentLocation;
-    private FusedLocationProviderClient fusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
-    ImageView welcome_IMG_background;
+    private Location currentLocation;
+    private EditText welcome_INPT_name;
+    private ImageButton welcome_BTN_boy, welcome_BTN_girl;
+    private Button welcome_BTN_records;
+    private ImageView welcome_IMG_background;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +60,14 @@ public class WelcomePage extends AppCompatActivity {
         welcome_BTN_boy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGame("boy");
+                startGame(Constants.BOY_CARD);
             }
         });
 
         welcome_BTN_girl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGame("girl");
+                startGame(Constants.GIRL_CARD);
             }
         });
 
@@ -82,7 +80,7 @@ public class WelcomePage extends AppCompatActivity {
     }
 
     private void showRecords() {
-        Intent intent = new Intent(this, MapsActivity.class);
+        Intent intent = new Intent(this, RecordsPage.class);
         startActivity(intent);
     }
 
@@ -96,6 +94,10 @@ public class WelcomePage extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(MainActivity.PLAYER_GENDER, playerGander);
         intent.putExtra(MainActivity.PLAYER_NAME, name);
+        if (currentLocation != null) {
+            intent.putExtra(MainActivity.LATITUDE, currentLocation.getLatitude());
+            intent.putExtra(MainActivity.LONGITUDE, currentLocation.getLongitude());
+        }
         startActivity(intent);
         finish();
     }
@@ -153,11 +155,7 @@ public class WelcomePage extends AppCompatActivity {
                             // Got last known location. In some rare situations this can be null.
                             if (location != null) {
                                 // Logic to handle location object
-
                                 currentLocation = location;
-                                //Toast.makeText(getApplicationContext(), currentLocation.getLatitude()+", "+ currentLocation.getLongitude(),Toast.LENGTH_SHORT).show();
-                                Log.d("pppp",""+currentLocation.getLatitude()+", "+ currentLocation.getLongitude() );
-
                             }
                         }
                     });
@@ -166,22 +164,8 @@ public class WelcomePage extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                //abc
-            }else{
-
-            }
-        }
-    }
-    @Override
     protected void onResume() {
         super.onResume();
         mapFunc();
-    }
-
-    public static Location getCurrentLocation() {
-        return currentLocation;
     }
 }

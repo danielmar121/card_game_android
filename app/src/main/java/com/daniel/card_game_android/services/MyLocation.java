@@ -1,22 +1,25 @@
-package com.daniel.card_game_android;
+package com.daniel.card_game_android.services;
+
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.util.Log;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.daniel.card_game_android.activities.WelcomePage;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MyLocation {
-    /*
     private Location currentLocation;
-
-
-    private  FusedLocationProviderClient fusedLocationClient;
+    private FusedLocationProviderClient fusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
 
     public MyLocation(Context context) {
@@ -24,12 +27,12 @@ public class MyLocation {
         getLocation(context);
     }
 
-    private void getLocation(final Context context){
-
-        // Here, thisActivity is the current activity
+    private void getLocation(final Context context)  {
+        //thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(context,
                 Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
+
 
             // Permission is not granted
             // Should we show an explanation?
@@ -59,7 +62,7 @@ public class MyLocation {
                         .create()
                         .show();
             } else {
-                // No explanation needed; request the permission
+                // request the permission
                 ActivityCompat.requestPermissions((Activity) context,
                         new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                         MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
@@ -77,6 +80,7 @@ public class MyLocation {
                             // Got last known location. In some rare situations this can be null.
                             if (location != null) {
                                 // Logic to handle location object
+
                                 currentLocation = location;
                             }
                         }
@@ -88,5 +92,4 @@ public class MyLocation {
     public Location getCurrentLocation() {
         return currentLocation;
     }
-*/
 }
