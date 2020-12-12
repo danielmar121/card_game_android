@@ -3,6 +3,7 @@ package com.daniel.card_game_android.activities;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.daniel.card_game_android.R;
 import com.daniel.card_game_android.objects.Card;
@@ -22,14 +23,16 @@ import static com.daniel.card_game_android.utils.Constants.GIRL_CARD;
 public class MainActivity extends ActivityBase {
     public static final String PLAYER_GENDER = "PLAYER_GENDER";
     public static final String PLAYER_NAME = "PLAYER_NAME";
+    public static final String LATITUDE = "LATITUDE";
+    public static final String LONGITUDE = "LONGITUDE";
 
     private final int SECOND = 1000;
     private final int NUMBER_OF_CARDS = 26;
+    public Player playerA;
+    public Player playerB;
     Deck warDeck;
     private Timer carousalTimer;
     private MainViewController mainViewController;
-    public Player playerA;
-    public Player playerB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +63,21 @@ public class MainActivity extends ActivityBase {
         Intent intent = getIntent();
         String playerGander = intent.getStringExtra(PLAYER_GENDER);
         String playerName = intent.getStringExtra(PLAYER_NAME);
+        double playerLatitude = intent.getDoubleExtra(LATITUDE, 0);
+        double playerLongitude = intent.getDoubleExtra(LONGITUDE, 0);
 
-        playerA = new Player().setPlayerName(playerName).setPlayerScore(0);
-        playerB = new Player(COMPUTER_CARD, 0, COMPUTER_NAME, -0.142368, 51.501156);
+        playerA = new Player()
+                .setPlayerName(playerName)
+                .setPlayerScore(0)
+                .setPlayerLatitude(playerLatitude)
+                .setPlayerLongitude(playerLongitude);
 
-        if (playerGander.matches("girl")) {
+        playerB = new Player(COMPUTER_CARD,
+                0, COMPUTER_NAME,
+                -0.142368,
+                51.501156);
+
+        if (playerGander.matches(GIRL_CARD)) {
             playerA.setPlayerImage(GIRL_CARD);
         } else {
             playerA.setPlayerImage(BOY_CARD);

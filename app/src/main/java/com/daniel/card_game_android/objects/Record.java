@@ -10,10 +10,12 @@ public class Record implements Comparable {
     public Record() {
     }
 
-    public Record(String name, int score, String date) {
+    public Record(String name, int score, String date, double lat, double lon) {
         this.name = name;
         this.score = score;
         this.date = date;
+        this.lat = lat;
+        this.lon = lon;
     }
 
     public String getName() {

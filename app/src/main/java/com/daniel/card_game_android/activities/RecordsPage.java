@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.daniel.card_game_android.R;
 import com.daniel.card_game_android.fragments.FragmentList;
+import com.daniel.card_game_android.fragments.FragmentMap;
+import com.daniel.card_game_android.interfaces.RecordCallBack;
+import com.daniel.card_game_android.objects.Record;
 import com.daniel.card_game_android.objects.TopTenRecords;
 import com.daniel.card_game_android.services.RecordItemAdapter;
 import com.daniel.card_game_android.utils.Constants;
@@ -18,7 +21,14 @@ import static com.daniel.card_game_android.utils.Constants.TOP_TEN;
 
 
 public class RecordsPage extends AppCompatActivity {
+    FragmentMap fragmentMap;
     private TopTenRecords topTenRecords;
+    private RecordCallBack recordCallBack = new RecordCallBack() {
+        @Override
+        public void displayLocation(Record record) {
+            fragmentMap.showPlayerLocation(record);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +42,11 @@ public class RecordsPage extends AppCompatActivity {
         RecordItemAdapter itemAdapter = new RecordItemAdapter(this,
                 R.layout.record_item, topTenRecords.getRecords());
 
-        FragmentList fragmentList = new FragmentList(itemAdapter);
+        FragmentList fragmentList = new FragmentList(itemAdapter, recordCallBack);
         getSupportFragmentManager().beginTransaction().add(R.id.record_LAY_list, fragmentList).commit();
+
+        fragmentMap = new FragmentMap();
+        getSupportFragmentManager().beginTransaction().add(R.id.record_LAY_map, fragmentMap).commit();
     }
 
     private void findViews() {
