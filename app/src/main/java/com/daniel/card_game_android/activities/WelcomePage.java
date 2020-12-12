@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,13 +14,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.daniel.card_game_android.R;
-import com.daniel.card_game_android.services.MyLocation;
 import com.daniel.card_game_android.utils.Constants;
 import com.daniel.card_game_android.utils.MyScreenUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;

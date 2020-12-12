@@ -1,7 +1,6 @@
 package com.daniel.card_game_android.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,6 @@ import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 
-import static com.daniel.card_game_android.utils.Constants.MY_SP;
 import static com.daniel.card_game_android.utils.Constants.TOP_TEN;
 
 public class WinnerPage extends ActivityBase {

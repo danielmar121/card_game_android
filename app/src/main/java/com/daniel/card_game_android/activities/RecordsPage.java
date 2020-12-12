@@ -1,6 +1,5 @@
 package com.daniel.card_game_android.activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -59,7 +58,7 @@ public class RecordsPage extends AppCompatActivity {
         topTenRecords = new TopTenRecords();
         Gson gson = new Gson();
 
-        String jsonFromMemory = MySP.getInstance().getString(TOP_TEN,"");
+        String jsonFromMemory = MySP.getInstance().getString(TOP_TEN, "");
         if (!jsonFromMemory.equals("")) {
             topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
         }
