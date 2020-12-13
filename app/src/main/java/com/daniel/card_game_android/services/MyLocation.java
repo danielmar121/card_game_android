@@ -7,12 +7,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.daniel.card_game_android.activities.WelcomePage;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,7 +25,7 @@ public class MyLocation {
         getLocation(context);
     }
 
-    private void getLocation(final Context context)  {
+    private void getLocation(final Context context) {
         //thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(context,
                 Manifest.permission.ACCESS_COARSE_LOCATION)

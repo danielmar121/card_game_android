@@ -3,7 +3,6 @@ package com.daniel.card_game_android.activities;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.daniel.card_game_android.R;
 import com.daniel.card_game_android.objects.Card;

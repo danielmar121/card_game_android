@@ -1,7 +1,6 @@
 package com.daniel.card_game_android.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +11,7 @@ import com.daniel.card_game_android.R;
 import com.daniel.card_game_android.objects.Player;
 import com.daniel.card_game_android.objects.Record;
 import com.daniel.card_game_android.objects.TopTenRecords;
+import com.daniel.card_game_android.services.MySP;
 import com.daniel.card_game_android.services.Sound;
 import com.daniel.card_game_android.utils.Constants;
 import com.daniel.card_game_android.utils.MyScreenUtils;
@@ -19,7 +19,6 @@ import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 
-import static com.daniel.card_game_android.utils.Constants.MY_SP;
 import static com.daniel.card_game_android.utils.Constants.TOP_TEN;
 
 public class WinnerPage extends ActivityBase {
@@ -102,10 +101,9 @@ public class WinnerPage extends ActivityBase {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy\nHH:mm:ss");
         String date = format.format(System.currentTimeMillis());
 
-        SharedPreferences prefs = getSharedPreferences(MY_SP, MODE_PRIVATE);
         Gson gson = new Gson();
 
-        String jsonFromMemory = prefs.getString(TOP_TEN, "");
+        String jsonFromMemory = MySP.getInstance().getString(TOP_TEN, "");
         if (jsonFromMemory.equals("")) {
             topTenRecords = new TopTenRecords();
         } else {
@@ -121,10 +119,8 @@ public class WinnerPage extends ActivityBase {
         boolean isAdd = topTenRecords.addRecord(record);
 
         if (isAdd) {
-            SharedPreferences.Editor editor = prefs.edit();
             String json = gson.toJson(topTenRecords);
-            editor.putString("TopTen", json);
-            editor.apply();
+            MySP.getInstance().putString(TOP_TEN, json);
         }
     }
 

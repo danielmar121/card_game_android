@@ -1,6 +1,5 @@
 package com.daniel.card_game_android.activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -12,6 +11,7 @@ import com.daniel.card_game_android.fragments.FragmentMap;
 import com.daniel.card_game_android.interfaces.RecordCallBack;
 import com.daniel.card_game_android.objects.Record;
 import com.daniel.card_game_android.objects.TopTenRecords;
+import com.daniel.card_game_android.services.MySP;
 import com.daniel.card_game_android.services.RecordItemAdapter;
 import com.daniel.card_game_android.utils.Constants;
 import com.daniel.card_game_android.utils.MyScreenUtils;
@@ -56,10 +56,9 @@ public class RecordsPage extends AppCompatActivity {
 
     private void getTopTen() {
         topTenRecords = new TopTenRecords();
-        SharedPreferences prefs = getSharedPreferences("MY_SP", MODE_PRIVATE);
         Gson gson = new Gson();
 
-        String jsonFromMemory = prefs.getString(TOP_TEN, "");
+        String jsonFromMemory = MySP.getInstance().getString(TOP_TEN, "");
         if (!jsonFromMemory.equals("")) {
             topTenRecords = gson.fromJson(jsonFromMemory, TopTenRecords.class);
         }
