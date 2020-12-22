@@ -39,6 +39,7 @@ public class WinnerPage extends ActivityBase {
 
         displayWinner();
         winSound.playSound();
+        isDoubleBackPressToClose = true;
     }
 
     private void findViews() {
