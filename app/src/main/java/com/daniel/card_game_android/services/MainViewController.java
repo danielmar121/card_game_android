@@ -24,6 +24,7 @@ public class MainViewController {
 
     public MainViewController(MainActivity activity) {
         this.activity = activity;
+
         findViews();
         initViews();
     }

@@ -21,8 +21,9 @@ import static com.daniel.card_game_android.utils.Constants.TOP_TEN;
 
 
 public class RecordsPage extends AppCompatActivity {
-    FragmentMap fragmentMap;
+    private FragmentMap fragmentMap;
     private TopTenRecords topTenRecords;
+
     private RecordCallBack recordCallBack = new RecordCallBack() {
         @Override
         public void displayLocation(Record record) {

@@ -123,5 +123,4 @@ public class WinnerPage extends ActivityBase {
             MySP.getInstance().putString(TOP_TEN, json);
         }
     }
-
 }
